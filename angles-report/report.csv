@@ -1,0 +1,56 @@
+# scrape_file: data/compcert-scrape.txt
+# save_file: data/polyarg-weights.dat
+# save_all_epochs: False
+# num_threads: None
+# max_tuples: None
+# context_filter: (goal-args+((tactic:induction+tactic:destruct)%numeric-args)+hyp-args+rel-lemma-args)%maxargs:1%default
+# truncate_semicolons: True
+# use_substitutions: True
+# normalize_numeric_args: True
+# verbose: False
+# num_epochs: 20
+# batch_size: 128
+# start_from: None
+# print_every: 5
+# learning_rate: 0.4
+# epoch_step: 3
+# hidden_size: 128
+# num_layers: 3
+# gamma: 0.8
+# optimizer: SGD
+# max_premises: 20
+# num_keywords: 60
+# tokenizer: no-fallback
+# num_relevance_samples: 1000
+# save_tokens: None
+# load_tokens: tokens.txt
+# print_keywords: False
+# num_tactic_keywords: 50
+# save_tactic_keywords: data/tactic-keywords.dat
+# load_tactic_keywords: data/tactic-keywords.dat
+# num_head_keywords: 100
+# save_head_keywords: data/head-keywords.dat
+# load_head_keywords: data/head-keywords.dat
+# max_length: 30
+# max_string_distance: 50
+# max_beam_width: 10
+# lemma_args: True
+# hyp_features: True
+# features: True
+# hyp_rnn: True
+# goal_rnn: True
+# replace_rnns_with_dnns: False
+# print_tensors: False
+# load_text_tokens: None
+# load_tensors: None
+# save_embedding: None
+# save_features_state: None
+# load_embedding: None
+# load_features_state: None
+# training loss: 2.5046338874686516
+# # epochs: 20
+# predictor: polyarg
+# report type: search
+# search width: 5
+# search depth: 6
+89,67,5

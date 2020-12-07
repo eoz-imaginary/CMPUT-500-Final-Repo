@@ -1,0 +1,146 @@
+lemma,status,prooflength
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('Higman.v'), PosixPath2('Higman2.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Theorem prop1 : forall ws : list word, bar (nil :: ws).",SKIPPED,2
+"Theorem lemma1 :
+ forall (ws : list word) (xs : word) (x : letter), L xs ws -> L (x :: xs) ws.",SKIPPED,4
+"Theorem lemma2' :
+ forall (vs ws : list word) (x : letter) (xs : word),
+ R x vs ws -> L xs vs -> L (x :: xs) ws.",SKIPPED,6
+"Theorem lemma2 :
+ forall (vs ws : list word) (a : letter), R a vs ws -> good vs -> good ws.",SKIPPED,7
+"Theorem lemma3' :
+ forall (vs ws : list word) (x : letter) (xs : word),
+ T x vs ws -> L xs vs -> L (x :: xs) ws.",INCOMPLETE,11
+"Theorem lemma3 :
+ forall (ws zs : list word) (a : letter), T a ws zs -> good ws -> good zs.",SKIPPED,11
+"Theorem lemma4 :
+ forall (ws zs : list word) (a : letter), R a ws zs -> ws <> nil -> T a ws zs.",SKIPPED,15
+"Theorem letter_neq : forall a b c : letter, a <> b -> c <> a -> c = b.",SUCCESS,17
+"Theorem letter_eq_dec : forall a b : letter, {a = b} + {a <> b}.",SKIPPED,3
+"Theorem prop2 :
+ forall (a b : letter) (xs : list word),
+ a <> b ->
+ bar xs ->
+ forall ys : list word,
+ bar ys -> forall zs : list word, T a xs zs -> T b ys zs -> bar zs.",SKIPPED,19
+"Theorem prop3 :
+ forall (a : letter) (xs : list word),
+ bar xs -> forall zs : list word, xs <> nil -> R a xs zs -> bar zs.",SKIPPED,17
+Theorem higman : bar nil.,SKIPPED,5
+"Theorem good_prefix_lemma :
+ forall (ws : list word) (f : nat -> word),
+ bar ws ->
+ is_prefix word ws f -> {vs : list word | is_prefix word vs f /\ good vs}.",SKIPPED,6
+"Theorem good_prefix :
+ forall f : nat -> word, {vs : list word | is_prefix word vs f /\ good vs}.",SKIPPED,2
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('Higman.v'), PosixPath2('Higman2.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Theorem prop1 : forall ws : list word, bar (nil :: ws).",SKIPPED,2
+"Theorem lemma1 :
+ forall (ws : list word) (xs : word) (x : letter), L xs ws -> L (x :: xs) ws.",SKIPPED,4
+"Theorem lemma2' :
+ forall (vs ws : list word) (x : letter) (xs : word),
+ R x vs ws -> L xs vs -> L (x :: xs) ws.",SKIPPED,6
+"Theorem lemma2 :
+ forall (vs ws : list word) (a : letter), R a vs ws -> good vs -> good ws.",SKIPPED,7
+"Theorem lemma3' :
+ forall (vs ws : list word) (x : letter) (xs : word),
+ T x vs ws -> L xs vs -> L (x :: xs) ws.",SKIPPED,11
+"Theorem lemma3 :
+ forall (ws zs : list word) (a : letter), T a ws zs -> good ws -> good zs.",SKIPPED,11
+"Theorem lemma4 :
+ forall (ws zs : list word) (a : letter), R a ws zs -> ws <> nil -> T a ws zs.",SKIPPED,15
+"Theorem letter_neq : forall a b c : letter, a <> b -> c <> a -> c = b.",SUCCESS,17
+"Theorem letter_eq_dec : forall a b : letter, {a = b} + {a <> b}.",SKIPPED,3
+"Theorem prop2 :
+ forall (a b : letter) (xs : list word),
+ a <> b ->
+ bar xs ->
+ forall ys : list word,
+ bar ys -> forall zs : list word, T a xs zs -> T b ys zs -> bar zs.",SKIPPED,19
+"Theorem prop3 :
+ forall (a : letter) (xs : list word),
+ bar xs -> forall zs : list word, xs <> nil -> R a xs zs -> bar zs.",SKIPPED,17
+Theorem higman : bar nil.,SKIPPED,5
+"Theorem L_idx :
+ forall (f : nat -> word) (w : word) (ws : list word),
+ L w ws -> is_prefix word ws f -> {i : nat | emb (f i) w /\ i < length ws}.",SKIPPED,22
+"Theorem good_idx :
+ forall (f : nat -> word) (ws : list word),
+ good ws ->
+ is_prefix word ws f -> {i : nat &  {j : nat | emb (f i) (f j) /\ i < j}}.",SKIPPED,21
+"Theorem bar_idx :
+ forall (f : nat -> word) (ws : list word),
+ bar ws ->
+ is_prefix word ws f -> {i : nat &  {j : nat | emb (f i) (f j) /\ i < j}}.",SKIPPED,8
+"Theorem higman_idx :
+ forall f : nat -> word, {i : nat &  {j : nat | emb (f i) (f j) /\ i < j}}.",SKIPPED,5

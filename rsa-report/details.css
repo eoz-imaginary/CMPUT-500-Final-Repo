@@ -1,0 +1,199 @@
+/*##########################################################################
+#
+#    This file is part of Proverbot9001.
+#
+#    Proverbot9001 is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    Proverbot9001 is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with Proverbot9001.  If not, see <https://www.gnu.org/licenses/>.
+#
+#    Copyright 2019 Alex Sanchez-Stern and Yousef Alhessi
+#
+##########################################################################*/
+body {
+    padding: 40px 30px;
+    width: auto;
+    max-width: 1500px;
+    margin: 3em auto;
+    position: relative;
+    text-rendering: optimizeLegibility;
+}
+code {
+    font-size: 1.5em
+}
+.goodcommand {
+    color: green
+}
+.mostlygoodcommand {
+    color: darkturquoise
+}
+.badcommand {
+    color: red
+}
+.okaycommand {
+    color: orange
+}
+.failedcommand {
+    color: red;
+    font-weight: bold;
+}
+.superfailedcommand {
+    color: black;
+    font-weight: bold;
+}
+
+.search-graph {
+    display:block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#lemma_overlay {
+    position: fixed;
+    border-style: outset;
+    border-width: 4px;
+    background-color: LightCyan;
+    min-height:0%;
+    overflow: hidden;
+    max-width: 50%;
+    width: auto;
+    min-width: 30%;
+    top: 2em;
+    left: auto;
+    right: 0;
+}
+
+#tactic_overlay {
+    position: fixed;
+    border-style: outset;
+    border-width: 4px;
+    background-color: LightCyan;
+    min-height:50%;
+    overflow: hidden;
+    max-width: 50%;
+    width: auto;
+    min-width: 30%;
+    top: 2em;
+    left: auto;
+    right: 0;
+    font-size: 150%;
+    padding:1.5em;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 50%;
+    min-height: 90%;
+    max-height: 95%;
+    top: 2em;
+    left: auto;
+    right: 0;
+    border-style: outset;
+    border-width: 4px;
+    background-color: LightCyan;
+    overflow: scroll;
+}
+#context {
+    margin: 1.5em;
+}
+#predicted {
+    margin: 2em;
+    text-align: center;
+}
+#stats {
+    margin: 2.5em;
+    text-align: center;
+}
+#predicted .tactic {
+    font-size: 20pt;
+    display: inline;
+}
+
+#predicted .certainty {
+    display: inline;
+}
+
+#stats tt {
+    font-size: 14pt;
+}
+
+#context pre {
+    font-size: 14pt;
+}
+.collapsible {
+  cursor: pointer;
+  padding: .6em;
+  width: 100%;
+  border: none;
+  text-align: left;
+  background-color: white;
+  border-radius: 1.5em;
+}
+
+.collapsible.good {
+    background-color: lightgreen;
+}
+.collapsible.okay{
+    background-color: peachpuff;
+}
+.collapsible.bad{
+    background-color: pink;
+}
+.collapsible.skipped {
+    background-color: grey;
+}
+
+.collapsible:hover {
+  background-color: #b6b6b6;
+}
+
+.region {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.region .predicted {
+    float: left;
+    max-width: 45%;
+}
+.region .original {
+    float: left;
+    margin-left:1.5em;
+    max-width: 45%;
+}
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 20px;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+.buttontext {
+  float: left;
+}
+
+.numtacs {
+    float: right;
+}
+.numtacs.empty {
+    background-color:grey;
+}
+.numtacs.nonempty {
+    background-color:lightblue;
+}
+
+.distance {
+    font-size: 20px;
+}

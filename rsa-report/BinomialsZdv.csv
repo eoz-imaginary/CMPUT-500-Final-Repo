@@ -1,0 +1,68 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('Fermat.v'), PosixPath2('Binomials.v'), PosixPath2('Rsa.v'), PosixPath2('MiscRsa.v'), PosixPath2('Divides.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma sum_nm_i :
+ forall (m n : nat) (f : nat -> nat),
+ sum_nm (S n) m f = f m + sum_nm n (S m) f.",SUCCESS,2
+"Lemma sum_nm_f :
+ forall (m n : nat) (f : nat -> nat),
+ sum_nm (S n) m f = sum_nm n m f + f (m + S n).",INCOMPLETE,14
+"Lemma sum_nm_ext :
+ forall (m n : nat) (f g : nat -> nat),
+ (forall x : nat, x <= n -> f (m + x) = g (m + x)) ->
+ sum_nm n m f = sum_nm n m g.",INCOMPLETE,24
+"Lemma sum_nm_add :
+ forall (m n : nat) (f g : nat -> nat),
+ sum_nm n m f + sum_nm n m g = sum_nm n m (fun i : nat => f i + g i).",INCOMPLETE,19
+"Lemma sum_nm_times :
+ forall (m n x : nat) (f : nat -> nat),
+ x * sum_nm n m f = sum_nm n m (fun i : nat => x * f i).",INCOMPLETE,15
+"Lemma inv_sum_nm :
+ forall (P : nat -> Prop) (i n : nat) (f : nat -> nat),
+ (forall a b : nat, P a -> P b -> P (a + b)) ->
+ (forall x : nat, x <= n -> P (f (i + x))) -> P (sum_nm n i f).",INCOMPLETE,26
+"Lemma t_sum_Svars :
+ forall (n k : nat) (f : nat -> nat),
+ sum_nm k n f = sum_nm k (S n) (fun i : nat => f (pred i)).",INCOMPLETE,11
+"Lemma binomial_def1 : forall n : nat, binomial n 0 = 1.",SUCCESS,5
+"Lemma binomial_def2 : forall n m : nat, n < m -> binomial n m = 0.",INCOMPLETE,29
+"Lemma binomial_def3 : forall n : nat, binomial n n = 1.",INCOMPLETE,12
+"Lemma binomial_def4 :
+ forall n k : nat,
+ k < n -> binomial (S n) (S k) = binomial n (S k) + binomial n k.",SUCCESS,4
+"Lemma binomial_fact :
+ forall m n : nat,
+ binomial (n + m) n * (factorial n * factorial m) = factorial (n + m).",INCOMPLETE,22

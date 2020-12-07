@@ -1,0 +1,111 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('point_cocyclicite.v'), PosixPath2('point_napoleon.v'), PosixPath2('point_angle.v'), PosixPath2('point_tangente.v'), PosixPath2('point_orthocentre.v'), PosixPath2('point_Simson.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma colineaire_sym : forall u v : V, colineaire u v -> colineaire v u.",FAILURE,18
+"Lemma colineaire_modulo_pi :
+ forall u v u' v' : V,
+ colineaire u u' ->
+ colineaire v v' -> R (double (cons u' v')) (double (cons u v)).",FAILURE,38
+"Lemma orthogonal_opp : forall u v : V, orthogonal u v -> orthogonal u (opp v).",FAILURE,24
+"Lemma orthogonal_colineaire :
+ forall u v w : V, orthogonal u v -> colineaire v w -> orthogonal u w.",FAILURE,19
+"Lemma colineaire_transitive :
+ forall u v w : V, colineaire u v -> colineaire v w -> colineaire u w.",INCOMPLETE,15
+"Lemma double_orthogonal :
+ forall u u' v v' : V,
+ orthogonal u u' ->
+ orthogonal v v' -> R (double (cons u v)) (double (cons u' v')).",INCOMPLETE,54
+"Lemma critere_orthogonal :
+ forall u v : V, R (cons u v) (cons v (opp u)) -> orthogonal u v.",INCOMPLETE,13
+"Lemma critere_orthogonal_reciproque :
+ forall u v : V, orthogonal u v -> R (cons u v) (cons v (opp u)).",FAILURE,22
+"Lemma bissectrice_double :
+ forall I A B C : PO,
+ bissectrice I A B C ->
+ R (double (cons (vec A I) (vec A C))) (cons (vec A B) (vec A C)).",FAILURE,10
+"Lemma bissectrice_unicite :
+ forall I A B C J : PO,
+ bissectrice I A B C -> bissectrice J A B C -> colineaire (vec A I) (vec A J).",INCOMPLETE,27
+"Lemma bissectrice_direction :
+ forall (I A B C : PO) (u : V),
+ bissectrice I A B C ->
+ R (cons (vec A B) u) (cons u (vec A C)) -> colineaire (vec A I) u.",INCOMPLETE,27
+"Lemma isocele_bissectrice_hauteur :
+ forall I A B C : PO,
+ bissectrice I A B C -> isocele A B C -> orthogonal (vec A I) (vec B C).",INCOMPLETE,67
+"Lemma orthogonal_bissectrice :
+ forall u v : V, orthogonal u v -> R (cons (opp v) u) (cons u v).",FAILURE,15
+"Lemma bissectrice_hauteur_isocele :
+ forall I A B C : PO,
+ bissectrice I A B C -> orthogonal (vec A I) (vec B C) -> isocele A B C.",FAILURE,30
+"Lemma isocele_hauteur_bissectrice :
+ forall I A B C : PO,
+ isocele A B C -> orthogonal (vec A I) (vec B C) -> bissectrice I A B C.",FAILURE,54
+"Lemma bissectrice_deux_isoceles :
+ forall I A B C D : PO,
+ bissectrice I A B C ->
+ isocele A B C ->
+ isocele D B C -> R (cons (vec D B) (vec A I)) (cons (vec A I) (vec D C)).",FAILURE,70
+"Lemma bissectrice_droite :
+ forall u v w t : V,
+ R (cons v u) (cons u w) -> colineaire u t -> R (cons v t) (cons t w).",FAILURE,33
+"Lemma milieu_isocele :
+ forall I A B C : PO, isocele A B C -> milieu I B C -> bissectrice I A B C.",SUCCESS,9
+"Lemma existence_mediatrice_base_isocele :
+ forall A B C D : PO,
+ isocele A B C -> isocele D B C -> bissectrice D A B C /\ bissectrice A D B C.",INCOMPLETE,45
+"Lemma concours_3circonscrits :
+ forall A B C P Q T O1 O2 I : PO,
+ circonscrit T A B O1 ->
+ circonscrit I A B O1 ->
+ circonscrit Q A C O2 ->
+ circonscrit I A C O2 ->
+ ~ colineaire (vec P B) (vec P C) ->
+ R
+   (plus (cons (vec P C) (vec P B))
+      (plus (cons (vec T B) (vec T A)) (cons (vec Q A) (vec Q C)))) pi ->
+ sont_cocycliques P B C I.",INCOMPLETE,99
+"Lemma circonscrit_3centres :
+ forall A B C O1 O2 O3 I : PO,
+ circonscrit I A B O1 ->
+ circonscrit I A C O2 ->
+ circonscrit I B C O3 ->
+ R (double (cons (vec O1 O2) (vec O1 O3)))
+   (double (cons (vec I A) (vec I B))) /\
+ R (double (cons (vec O1 O3) (vec O2 O3)))
+   (double (cons (vec I B) (vec I C))) /\
+ R (double (cons (vec O1 O2) (vec O2 O3)))
+   (double (cons (vec I A) (vec I C))).",INCOMPLETE,65

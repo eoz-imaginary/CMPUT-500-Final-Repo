@@ -1,0 +1,128 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('Fermat.v'), PosixPath2('Binomials.v'), PosixPath2('Rsa.v'), PosixPath2('MiscRsa.v'), PosixPath2('Divides.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma div_ref : forall a : nat, divides a a.",INCOMPLETE,4
+"Lemma div_divides :
+ forall x y : nat, (exists q : _, is_div x y q 0) -> divides y x.",INCOMPLETE,11
+"Lemma divides_div :
+ forall x y : nat, 0 < y -> divides y x -> exists q : _, is_div x y q 0.",SUCCESS,11
+"Lemma divides_dec' :
+ forall x y : nat,
+ {(exists q : _, is_div x y q 0)} + {~ (exists q : _, is_div x y q 0)}.",INCOMPLETE,44
+"Lemma divides_dec : forall x y : nat, {divides x y} + {~ divides x y}.",INCOMPLETE,45
+"Lemma all_divides_O : forall n : nat, divides n 0.",INCOMPLETE,5
+"Lemma SO_divides_all : forall n : nat, divides 1 n.",INCOMPLETE,5
+"Lemma divides_plus1 :
+ forall a b c : nat, divides a b -> divides a c -> divides a (b + c).",INCOMPLETE,10
+"Lemma divides_plus2 :
+ forall a b c : nat, divides a b -> divides a (b + c) -> divides a c.",INCOMPLETE,11
+"Theorem divides_le : forall a b : nat, b <> 0 -> divides a b -> a <= b.",SUCCESS,17
+"Lemma divides_antisym : forall a b : nat, divides a b -> divides b a -> a = b.",INCOMPLETE,26
+"Lemma not_lt_div : forall a b : nat, 0 < b -> b < a -> ~ divides a b.",INCOMPLETE,12
+Lemma not_prime_O : ~ prime 0.,INCOMPLETE,13
+Lemma not_prime_1 : ~ prime 1.,SUCCESS,6
+"Lemma lt_prime : forall p : nat, prime p -> 1 < p.",INCOMPLETE,16
+"Lemma is_gcd_unic :
+ forall a b c d : nat, is_gcd a b c -> is_gcd a b d -> c = d.",INCOMPLETE,8
+"Lemma is_gcd_ref : forall x : nat, is_gcd x x x.",SUCCESS,7
+"Lemma is_gcd_sym : forall a b c : nat, is_gcd a b c -> is_gcd b a c.",SUCCESS,8
+"Lemma is_gcd_O' : forall a r : nat, is_gcd a 0 r -> a = r.",INCOMPLETE,7
+"Lemma is_gcd_Ol : forall a : nat, is_gcd a 0 a.",SUCCESS,6
+"Lemma is_gcd_Or : forall a : nat, is_gcd 0 a a.",SUCCESS,6
+"Lemma prime_gcd : forall p n : nat, prime p -> ~ divides p n -> is_gcd n p 1.",INCOMPLETE,27
+"Lemma gcd_rec :
+ forall P : nat -> nat -> Set,
+ (forall x : nat, P 0 x) ->
+ (forall x : nat, P x 0) ->
+ (forall a b : nat, P a b -> P a (b + a)) ->
+ (forall a b : nat, P a b -> P (a + b) b) -> forall a b : nat, P a b.",FAILURE,18
+"Lemma gcd_ind :
+ forall P : nat -> nat -> Prop,
+ (forall x : nat, P 0 x) ->
+ (forall x : nat, P x 0) ->
+ (forall a b : nat, P a b -> P a (b + a)) ->
+ (forall a b : nat, P a b -> P (a + b) b) -> forall a b : nat, P a b.",FAILURE,18
+"Theorem gcd_inv_Or_aux : forall a b c : nat, gcd_spec a b c -> b = 0 -> a = c.",INCOMPLETE,18
+"Theorem gcd_inv_Or : forall a b : nat, gcd_spec a 0 b -> a = b.",SUCCESS,5
+"Theorem gcd_inv_Ol_aux : forall a b c : nat, gcd_spec a b c -> a = 0 -> b = c.",INCOMPLETE,18
+"Theorem gcd_inv_Ol : forall a b : nat, gcd_spec 0 a b -> a = b.",INCOMPLETE,5
+"Lemma gcd_ex : forall a b : nat, {r : nat | gcd_spec a b r}.",INCOMPLETE,53
+"Lemma gcd_correct : forall a b : nat, gcd_spec a b (gcd a b).",INCOMPLETE,7
+"Lemma gcd_spec_uniq :
+ forall a b r1 r2 : nat, gcd_spec a b r1 -> gcd_spec a b r2 -> r1 = r2.",INCOMPLETE,54
+"Lemma gcd_correct2 : forall a b r : nat, gcd_spec a b r -> gcd a b = r.",SUCCESS,6
+"Lemma gcd_def0l : forall x : nat, gcd 0 x = x.",INCOMPLETE,6
+"Lemma gcd_def0r : forall x : nat, gcd x 0 = x.",INCOMPLETE,6
+"Lemma gcd_def1 : forall x : nat, gcd x x = x.",INCOMPLETE,11
+"Lemma gcd_def2 : forall a b : nat, gcd a b = gcd a (b + a).",INCOMPLETE,27
+"Lemma gcd_def3 : forall a b : nat, gcd a b = gcd (a + b) b.",INCOMPLETE,24
+"Lemma gcd_is_gcd : forall a b : nat, is_gcd a b (gcd a b).",INCOMPLETE,55
+"Lemma preEuclid :
+ forall a b c m : nat,
+ divides c (m * a) -> divides c (m * b) -> divides c (m * gcd a b).",INCOMPLETE,47
+"Theorem L_Euclides :
+ forall x a b : nat, is_gcd x a 1 -> divides x (a * b) -> divides x b.",INCOMPLETE,16
+"Lemma L_Euclides1 :
+ forall p a b : nat,
+ prime p -> divides p (a * b) -> ~ divides p a -> divides p b.",INCOMPLETE,9
+"Lemma L_Euclides2 :
+ forall p a b : nat,
+ prime p -> divides p (a * b) -> divides p a \/ divides p b.",INCOMPLETE,11
+"Theorem div_power_prime :
+ forall p w n : nat, prime p -> divides p (power w n) -> divides p w.",INCOMPLETE,50
+"Lemma cong_ref : forall a : nat, congruent a a.",SUCCESS,5
+"Lemma cong_sym : forall a b : nat, congruent a b -> congruent b a.",SUCCESS,7
+"Lemma cong_trans :
+ forall a b c : nat, congruent a b -> congruent b c -> congruent a c.",INCOMPLETE,14
+"Lemma cong_mult_O : forall a b : nat, congruent a 0 -> congruent (a * b) 0.",INCOMPLETE,13
+"Lemma cong_plus :
+ forall a b c d : nat,
+ congruent a b -> congruent c d -> congruent (a + c) (b + d).",INCOMPLETE,18
+"Lemma cong_add :
+ forall a b c : nat, congruent a b -> congruent (a + c) (b + c).",SUCCESS,10
+"Lemma cong_times :
+ forall a b c : nat, congruent a b -> congruent (a * c) (b * c).",INCOMPLETE,11
+"Lemma cong_mult :
+ forall a b c d : nat,
+ congruent a b -> congruent c d -> congruent (a * c) (b * d).",INCOMPLETE,36
+"Lemma cong_pow :
+ forall a b c : nat, congruent a b -> congruent (power a c) (power b c).",SUCCESS,13
+"Theorem congruent' :
+ forall a b : nat, b <= a -> congruent a b -> exists k : nat, a = k * n + b.",INCOMPLETE,14
+"Lemma cong1_le : forall x : nat, 1 < n -> congruent x 1 -> 1 <= x.",INCOMPLETE,26
+"Lemma divides_cong : forall x : nat, divides n x -> congruent 0 x.",INCOMPLETE,8
+"Theorem cong_divides :
+ forall a b : nat, b <= a -> congruent a b -> divides n (a - b).",INCOMPLETE,13

@@ -1,0 +1,45 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma sign_absZ : forall x : Z, leZ OZ (absZ x).",SUCCESS,13
+"Lemma tech_le_pos_abs : forall x : Z, leZ OZ x -> absZ x = x.",SUCCESS,9
+"Theorem leZ_antisymmetric : forall x y : Z, leZ x y -> leZ y x -> x = y.",SUCCESS,29
+"Lemma tech_lt_abs_OZ : forall x : Z, lt_absZ x (pos 0) -> x = OZ.",INCOMPLETE,15
+"Lemma tech_posOZ_pos : forall n : nat, leZ OZ (posOZ n).",SUCCESS,8
+"Lemma le_opp_OZ_l : forall x : Z, leZ OZ x -> leZ (oppZ x) OZ.",SUCCESS,11
+"Lemma le_opp_OZ :
+ forall x y : Z, x = oppZ y -> leZ OZ x -> leZ OZ y -> x = OZ.",SUCCESS,6
+"Let opp_inv : forall x y : Z, x = oppZ y -> y = oppZ x.",SUCCESS,15

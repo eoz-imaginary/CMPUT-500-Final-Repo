@@ -1,0 +1,572 @@
+lemma,status,prooflength
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+Lemma l1 : Included U (G_ U H) G.,SUCCESS,4
+Lemma eH_in_G : In U G (e_ U H).,SUCCESS,5
+Lemma starH_is_star : star_ U H = star.,SUCCESS,4
+Lemma eh_is_e : e_ U H = e.,FAILURE,5
+"Theorem invH_is_inv : forall a : U, In U (G_ U H) a -> inv_ U H a = inv a.",INCOMPLETE,11
+Theorem Subgroup_inhabited : Inhabited U (G_ U H).,SUCCESS,4
+Theorem star_endo : endo_operation U (G_ U H) star.,INCOMPLETE,4
+Theorem inv_endo : endo_function U (G_ U H) inv.,INCOMPLETE,7
+Let assoc : associative U star.,SUCCESS,3
+Let eH_in_H : In U H eH.,SUCCESS,4
+Let eH_left_neutral : left_neutral U star eH.,INCOMPLETE,6
+Let eH_right_neutral : right_neutral U star eH.,FAILURE,6
+Let inv_left_inverse : left_inverse U star inv eH.,INCOMPLETE,7
+Let inv_right_inverse : right_inverse U star inv eH.,INCOMPLETE,7
+Theorem T_1_6_2 : Setsubgroup U H Gr.,SUCCESS,8
+Definition exp : Z -> U -> U.,SKIPPED,22
+"Theorem exp_endo : forall (a : U) (n : Z), In U G a -> In U G (exp n a).",INCOMPLETE,22
+"Lemma exp_unfold_pos :
+ forall (a : U) (n : nat),
+ In U G a -> exp (pos (S n)) a = star a (exp (pos n) a).",SUCCESS,3
+"Lemma exp_unfold_neg :
+ forall (a : U) (n : nat),
+ In U G a -> exp (neg (S n)) a = star (inv a) (exp (neg n) a).",SUCCESS,3
+"Lemma exp_l1 :
+ forall (a : U) (n : nat),
+ In U G a -> star a (exp (neg (S n)) a) = exp (neg n) a.",INCOMPLETE,15
+"Lemma exp_l2 :
+ forall (a : U) (n : Z), In U G a -> star a (exp n a) = exp (succZ n) a.",INCOMPLETE,15
+"Lemma exp_l2' :
+ forall (a : U) (n : Z), In U G a -> star (inv a) (exp n a) = exp (predZ n) a.",SUCCESS,15
+"Theorem add_exponents :
+ forall (a : U) (m n : Z),
+ In U G a -> star (exp m a) (exp n a) = exp (addZ m n) a.",INCOMPLETE,41
+"Lemma exp_commut1 :
+ forall (a : U) (m : Z), In U G a -> star (exp m a) a = star a (exp m a).",INCOMPLETE,12
+"Lemma tech_opp_pos_negZ1 : forall n : nat, oppZ (pos n) = neg n.",SUCCESS,6
+"Lemma tech_opp_pos_negZ2 : forall n : nat, oppZ (neg n) = pos n.",SUCCESS,6
+"Theorem change_exponent_sign :
+ forall (a : U) (m : Z), In U G a -> inv (exp m a) = exp (oppZ m) a.",INCOMPLETE,52
+"Theorem powers_of_one_element :
+ forall a : U, In U G a -> Setsubgroup U (powers a) Gr.",INCOMPLETE,34
+Theorem T_1_6_3 : Setsubgroup U H Gr.,FAILURE,54
+Theorem Ex1 : Setsubgroup U (Singleton U e) Gr.,INCOMPLETE,23
+Theorem Ex2 : Setsubgroup U (Singleton U e) Gr.,SUCCESS,16
+"Lemma Ex3 : forall n : Z, exp n e = e.",INCOMPLETE,30
+Lemma Ex4 : powers e = Singleton U e.,FAILURE,18
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Theorem triv1 : forall a b : U, star (inv a) (star a b) = b.",SUCCESS,7
+"Theorem triv2 : forall a b : U, star (star b a) (inv a) = b.",SUCCESS,7
+"Theorem resolve : forall a b : U, star b a = e -> b = inv a.",INCOMPLETE,12
+Theorem self_inv : e = inv e.,FAILURE,3
+"Theorem inv_star : forall a b : U, star (inv b) (inv a) = inv (star a b).",INCOMPLETE,8
+"Theorem cancellation : forall a b : U, star a b = a -> b = e.",FAILURE,9
+"Theorem inv_involution : forall a : U, a = inv (inv a).",FAILURE,4
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Theorem sym_not_P :
+ forall (U : Type) (P : Relation U) (x y : U),
+ Symmetric U P -> ~ P x y -> ~ P y x.",SUCCESS,8
+"Theorem Equiv_from_order :
+ forall (U : Type) (R : Relation U),
+ Order U R -> Equivalence U (fun x y : U => R x y /\ R y x).",INCOMPLETE,37
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma tech_pos_not_posZ : forall n m : nat, n <> m -> pos n <> pos m.",SUCCESS,9
+"Lemma eq_OZ_dec : forall x : Z, {x = OZ} + {x <> OZ}.",INCOMPLETE,11
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma eq_gt_O_dec : forall n : nat, {n = 0} + {n > 0}.",SUCCESS,4
+"Lemma technical_lemma :
+ forall y m : nat, S (y * m + (y + m) + m) = S y * m + (S y + m).",SUCCESS,6
+"Lemma lt_minus2 : forall n m : nat, n < m -> 0 < m - n.",SUCCESS,10
+"Lemma minus_n_Sm : forall n m : nat, m < n -> pred (n - m) = n - S m.",SUCCESS,10
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma sign_absZ : forall x : Z, leZ OZ (absZ x).",SUCCESS,13
+"Lemma tech_le_pos_abs : forall x : Z, leZ OZ x -> absZ x = x.",SUCCESS,9
+"Theorem leZ_antisymmetric : forall x y : Z, leZ x y -> leZ y x -> x = y.",SUCCESS,29
+"Lemma tech_lt_abs_OZ : forall x : Z, lt_absZ x (pos 0) -> x = OZ.",INCOMPLETE,15
+"Lemma tech_posOZ_pos : forall n : nat, leZ OZ (posOZ n).",SUCCESS,8
+"Lemma le_opp_OZ_l : forall x : Z, leZ OZ x -> leZ (oppZ x) OZ.",SUCCESS,11
+"Lemma le_opp_OZ :
+ forall x y : Z, x = oppZ y -> leZ OZ x -> leZ OZ y -> x = OZ.",SUCCESS,6
+"Let opp_inv : forall x y : Z, x = oppZ y -> y = oppZ x.",SUCCESS,15
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma pred_succZ : forall x : Z, predZ (succZ x) = x.",SUCCESS,10
+"Lemma succ_predZ : forall x : Z, succZ (predZ x) = x.",SUCCESS,10
+"Lemma succ_pred_pred_succZ : forall x : Z, succZ (predZ x) = predZ (succZ x).",SUCCESS,6
+"Lemma tech_pred_posZ : forall n : nat, 0 < n -> predZ (pos n) = pos (pred n).",SUCCESS,8
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma addZ_eq1 : forall y : Z, addZ OZ y = y.",SUCCESS,3
+"Lemma addZ_eq2 : forall y : Z, addZ (pos 0) y = succZ y.",SUCCESS,3
+"Lemma addZ_eq3 :
+ forall (n1 : nat) (y : Z), addZ (pos (S n1)) y = succZ (addZ (pos n1) y).",SUCCESS,3
+"Lemma addZ_eq4 : forall y : Z, addZ (neg 0) y = predZ y.",SUCCESS,3
+"Lemma addZ_eq5 :
+ forall (n1 : nat) (y : Z), addZ (neg (S n1)) y = predZ (addZ (neg n1) y).",SUCCESS,3
+"Lemma succ_addZ_l : forall x y : Z, addZ (succZ x) y = succZ (addZ x y).",INCOMPLETE,18
+"Lemma pred_addZ_l : forall x y : Z, addZ (predZ x) y = predZ (addZ x y).",INCOMPLETE,13
+"Lemma tech_add_pos_succZ :
+ forall (x : nat) (y : Z), addZ (pos (S x)) y = succZ (addZ (pos x) y).",SUCCESS,1
+"Lemma tech_add_neg_predZ :
+ forall (x : nat) (y : Z), addZ (neg (S x)) y = predZ (addZ (neg x) y).",SUCCESS,1
+"Lemma succ_addZ_r : forall x y : Z, addZ x (succZ y) = succZ (addZ x y).",INCOMPLETE,19
+"Lemma pred_addZ_r : forall x y : Z, addZ x (predZ y) = predZ (addZ x y).",INCOMPLETE,17
+"Lemma add_OZ : forall x : Z, addZ x OZ = x.",INCOMPLETE,15
+"Lemma add_IZ_succZ : forall x : Z, addZ x IZ = succZ x.",INCOMPLETE,10
+"Lemma add_mIZ_predZ : forall x : Z, addZ x (neg 0) = predZ x.",INCOMPLETE,10
+Theorem addZ_commutativity : commutative Z addZ.,INCOMPLETE,35
+"Lemma tech_add_pos_neg_posZ :
+ forall n1 n2 : nat, n2 < n1 -> addZ (pos n1) (neg n2) = pos (n1 - S n2).",INCOMPLETE,22
+Theorem addZ_associativity : associative Z addZ.,INCOMPLETE,25
+Theorem addZ_neutral : neutral Z IdZ addZ OZ.,SUCCESS,10
+"Lemma opp_succZ : forall x : Z, oppZ (succZ x) = predZ (oppZ x).",SUCCESS,10
+"Lemma opp_predZ : forall x : Z, oppZ (predZ x) = succZ (oppZ x).",SUCCESS,10
+"Lemma tech_add_pos_negZ : forall n : nat, addZ (pos n) (neg n) = OZ.",INCOMPLETE,7
+"Lemma tech_add_neg_posZ : forall n : nat, addZ (neg n) (pos n) = OZ.",FAILURE,4
+"Lemma tech_add_pos_posZ :
+ forall n m : nat, addZ (pos n) (pos m) = pos (S (n + m)).",INCOMPLETE,8
+"Lemma tech_add_neg_negZ :
+ forall n m : nat, addZ (neg n) (neg m) = neg (S (n + m)).",INCOMPLETE,7
+"Theorem abs_eq_or_oppZ : forall x : Z, {absZ x = x} + {absZ x = oppZ x}.",SUCCESS,5
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Let h : forall x y : U, In U H x -> In U H y -> In U H (star x y).",SUCCESS,3
+"Lemma phi_unfold :
+ forall (a : U) (n : nat), In U G a -> phi a (S n) = star a (phi a n).",SUCCESS,4
+"Lemma positive_powers :
+ forall (a : U) (n : nat), In U H a -> In U H (phi a n).",SUCCESS,10
+"Lemma tech_exp :
+ forall (a : U) (n : nat), In U G a -> star (phi a n) a = phi a (S n).",INCOMPLETE,14
+"Lemma tech_exp' : forall n : nat, phi e n = e.",INCOMPLETE,12
+"Lemma phi_exp :
+ forall (a : U) (n m : nat),
+ In U G a -> star (phi a n) (phi a m) = phi a (S (n + m)).",INCOMPLETE,9
+"Lemma powers_repeat :
+ forall (a : U) (n m : nat),
+ In U G a -> phi a n = phi a (S (S (n + m))) -> phi a m = inv a.",INCOMPLETE,13
+"Lemma psi_not_inj : forall a : U, In U H a -> ~ injective nat U (psi a).",INCOMPLETE,19
+"Theorem remaining :
+ forall a : U,
+ In U H a ->
+ exists r : nat, (exists m : nat, phi a r = phi a (S (S (r + m)))).",INCOMPLETE,94
+Theorem T_1_6_4 : Setsubgroup U H Gr.,INCOMPLETE,40
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Theorem auxsub :
+ forall (H : Group U) (x : U), subgroup U H Gr -> In U (G_ U H) x -> In U G x.",SUCCESS,5
+Theorem T4 : Same_set U (Prod H K) (Prod K H) -> Setsubgroup U (Prod H K) Gr.,INCOMPLETE,78
+Theorem T4R : Setsubgroup U (Prod H K) Gr -> Included U (Prod H K) (Prod K H).,INCOMPLETE,55
+"Theorem T4R1 :
+ Setsubgroup U (Prod H K) Gr -> Included U (Prod K H) (Prod H K).",INCOMPLETE,74
+"Theorem T_1_6_8 :
+ Same_set U (Prod H K) (Prod K H) <-> Setsubgroup U (Prod H K) Gr.",SUCCESS,4
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4

@@ -1,0 +1,82 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+Lemma l1 : Included U (G_ U H) G.,SUCCESS,4
+Lemma eH_in_G : In U G (e_ U H).,SUCCESS,5
+Lemma starH_is_star : star_ U H = star.,SUCCESS,4
+Lemma eh_is_e : e_ U H = e.,FAILURE,5
+"Theorem invH_is_inv : forall a : U, In U (G_ U H) a -> inv_ U H a = inv a.",INCOMPLETE,11
+Theorem Subgroup_inhabited : Inhabited U (G_ U H).,SUCCESS,4
+Theorem star_endo : endo_operation U (G_ U H) star.,INCOMPLETE,4
+Theorem inv_endo : endo_function U (G_ U H) inv.,INCOMPLETE,7
+Let assoc : associative U star.,SUCCESS,3
+Let eH_in_H : In U H eH.,SUCCESS,4
+Let eH_left_neutral : left_neutral U star eH.,INCOMPLETE,6
+Let eH_right_neutral : right_neutral U star eH.,FAILURE,6
+Let inv_left_inverse : left_inverse U star inv eH.,INCOMPLETE,7
+Let inv_right_inverse : right_inverse U star inv eH.,INCOMPLETE,7
+Theorem T_1_6_2 : Setsubgroup U H Gr.,SUCCESS,8
+Definition exp : Z -> U -> U.,SKIPPED,22
+"Theorem exp_endo : forall (a : U) (n : Z), In U G a -> In U G (exp n a).",INCOMPLETE,22
+"Lemma exp_unfold_pos :
+ forall (a : U) (n : nat),
+ In U G a -> exp (pos (S n)) a = star a (exp (pos n) a).",SUCCESS,3
+"Lemma exp_unfold_neg :
+ forall (a : U) (n : nat),
+ In U G a -> exp (neg (S n)) a = star (inv a) (exp (neg n) a).",SUCCESS,3
+"Lemma exp_l1 :
+ forall (a : U) (n : nat),
+ In U G a -> star a (exp (neg (S n)) a) = exp (neg n) a.",INCOMPLETE,15
+"Lemma exp_l2 :
+ forall (a : U) (n : Z), In U G a -> star a (exp n a) = exp (succZ n) a.",INCOMPLETE,15
+"Lemma exp_l2' :
+ forall (a : U) (n : Z), In U G a -> star (inv a) (exp n a) = exp (predZ n) a.",SUCCESS,15
+"Theorem add_exponents :
+ forall (a : U) (m n : Z),
+ In U G a -> star (exp m a) (exp n a) = exp (addZ m n) a.",INCOMPLETE,41
+"Lemma exp_commut1 :
+ forall (a : U) (m : Z), In U G a -> star (exp m a) a = star a (exp m a).",INCOMPLETE,12
+"Lemma tech_opp_pos_negZ1 : forall n : nat, oppZ (pos n) = neg n.",SUCCESS,6
+"Lemma tech_opp_pos_negZ2 : forall n : nat, oppZ (neg n) = pos n.",SUCCESS,6
+"Theorem change_exponent_sign :
+ forall (a : U) (m : Z), In U G a -> inv (exp m a) = exp (oppZ m) a.",INCOMPLETE,52
+"Theorem powers_of_one_element :
+ forall a : U, In U G a -> Setsubgroup U (powers a) Gr.",INCOMPLETE,34
+Theorem T_1_6_3 : Setsubgroup U H Gr.,FAILURE,54
+Theorem Ex1 : Setsubgroup U (Singleton U e) Gr.,INCOMPLETE,23
+Theorem Ex2 : Setsubgroup U (Singleton U e) Gr.,SUCCESS,16
+"Lemma Ex3 : forall n : Z, exp n e = e.",INCOMPLETE,30
+Lemma Ex4 : powers e = Singleton U e.,FAILURE,18

@@ -1,0 +1,100 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('point_cocyclicite.v'), PosixPath2('point_napoleon.v'), PosixPath2('point_angle.v'), PosixPath2('point_tangente.v'), PosixPath2('point_orthocentre.v'), PosixPath2('point_Simson.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma permute : forall u v : V, R (plus (cons u v) (cons v u)) zero.",FAILURE,8
+"Lemma opp_opp : forall u : V, vR (opp (opp u)) u.",FAILURE,22
+"Lemma oppu_u : forall u : V, R (cons (opp u) u) pi.",FAILURE,9
+Lemma pi_plus_pi : R (plus pi pi) zero.,FAILURE,16
+"Lemma u_oppv : forall u v : V, R (cons u (opp v)) (plus (cons u v) pi).",FAILURE,10
+"Lemma oppu_v : forall u v : V, R (cons (opp u) v) (plus pi (cons u v)).",FAILURE,10
+"Lemma Chasles_2 :
+ forall u v w t : V,
+ R (cons u t) (plus (cons u v) (plus (cons v w) (cons w t))).",FAILURE,12
+"Lemma plus_assoc :
+ forall a b c : AV, R (plus a (plus b c)) (plus (plus a b) c).",FAILURE,46
+"Lemma compatible_croix :
+ forall a b c d : AV, R a b -> R c d -> R (plus a d) (plus b c).",FAILURE,7
+"Lemma plus_zero : forall u v : V, R (plus (cons u v) zero) (cons u v).",FAILURE,10
+"Lemma zero_plus : forall u v : V, R (plus zero (cons u v)) (cons u v).",FAILURE,10
+Lemma pi_plus_zero : R (plus pi zero) pi.,FAILURE,12
+"Lemma zero_plus_a : forall a : AV, R (plus zero a) a.",FAILURE,17
+"Lemma R_permute :
+ forall u v w t : V, R (cons u v) (cons w t) -> R (cons v u) (cons t w).",FAILURE,37
+"Lemma regulier_cons :
+ forall u v w t s : V,
+ R (cons u v) (cons u w) ->
+ R (cons u t) (cons u s) -> R (cons v t) (cons w s).",FAILURE,13
+"Lemma regulier :
+ forall a b c d : AV, R a c -> R (plus a b) (plus c d) -> R b d.",FAILURE,51
+"Lemma calcul : forall a b c : AV, R (plus a (plus b c)) (plus b (plus a c)).",INCOMPLETE,12
+"Lemma oppu_oppv : forall u v : V, R (cons (opp u) (opp v)) (cons u v).",FAILURE,24
+"Lemma rotation :
+ forall u v u' v' : V, R (cons u u') (cons v v') -> R (cons u v) (cons u' v').",INCOMPLETE,23
+"Lemma reflexion :
+ forall i u v u' v' : V,
+ R (cons u' i) (cons i u) ->
+ R (cons v' i) (cons i v) -> R (cons u v) (cons v' u').",INCOMPLETE,16
+"Lemma calcul2 :
+ forall a b c d : AV,
+ R (plus (plus a (plus b c)) d) (plus (plus a (plus b d)) c).",FAILURE,27
+"Lemma somme_pi :
+ forall u v w : V,
+ R (plus (cons u v) (plus (cons w (opp u)) (cons (opp v) (opp w)))) pi.",FAILURE,54
+"Theorem somme_triangle :
+ forall A B C : PO,
+ R
+   (plus (cons (vec A B) (vec A C))
+      (plus (cons (vec B C) (vec B A)) (cons (vec C A) (vec C B)))) pi.",FAILURE,17
+"Lemma triangle_isocele :
+ forall A B C : PO,
+ isocele A B C ->
+ R (plus (cons (vec A B) (vec A C)) (double (cons (vec B C) (vec B A)))) pi.",FAILURE,12
+"Lemma somme_permute :
+ forall u v w : V,
+ R (plus (cons v u) (plus (cons (opp u) w) (cons (opp w) (opp v)))) pi.",FAILURE,25
+"Lemma isocele_permute :
+ forall A B C : PO,
+ isocele A B C ->
+ R (plus (cons (vec A C) (vec A B)) (double (cons (vec B A) (vec B C)))) pi.",FAILURE,22
+Lemma double_zero : R (double zero) zero.,SUCCESS,3
+"Lemma double_permute :
+ forall u v w t : V,
+ R (double (cons u v)) (double (cons w t)) ->
+ R (double (cons v u)) (double (cons t w)).",FAILURE,25
+"Lemma R_double : forall a b : AV, R a b -> R (double a) (double b).",SUCCESS,7
+"Lemma double_plus :
+ forall a b : AV, R (double (plus a b)) (plus (double a) (double b)).",INCOMPLETE,17
+"Lemma orthogonal_sym : forall u v : V, orthogonal u v -> orthogonal v u.",FAILURE,17

@@ -1,0 +1,55 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('point_cocyclicite.v'), PosixPath2('point_napoleon.v'), PosixPath2('point_angle.v'), PosixPath2('point_tangente.v'), PosixPath2('point_orthocentre.v'), PosixPath2('point_Simson.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma colineaire_sym : forall u v : V, colineaire u v -> colineaire v u.",FAILURE,18
+"Lemma colineaire_modulo_pi :
+ forall u v u' v' : V,
+ colineaire u u' ->
+ colineaire v v' -> R (double (cons u' v')) (double (cons u v)).",FAILURE,38
+"Lemma orthogonal_opp : forall u v : V, orthogonal u v -> orthogonal u (opp v).",FAILURE,24
+"Lemma orthogonal_colineaire :
+ forall u v w : V, orthogonal u v -> colineaire v w -> orthogonal u w.",FAILURE,19
+"Lemma projete_ortho_cote :
+ forall A B C M P Q T : PO,
+ colineaire (vec C A) (vec C Q) ->
+ colineaire (vec P C) (vec P B) ->
+ colineaire (vec B A) (vec B T) ->
+ orthogonal (vec T M) (vec T B) ->
+ orthogonal (vec P M) (vec P B) ->
+ orthogonal (vec Q M) (vec Q C) ->
+ R (double (cons (vec P Q) (vec P T)))
+   (plus (double (cons (vec C A) (vec C M)))
+      (double (cons (vec B M) (vec B A)))).",FAILURE,45

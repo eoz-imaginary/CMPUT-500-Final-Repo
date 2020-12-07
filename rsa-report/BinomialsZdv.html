@@ -1,0 +1,1023 @@
+<html><head><link href="details.css" rel="stylesheet" /><script type="text/javascript" src="search-details.js"></script><title>Proverbot Detailed Report for Binomials.v</title></head><body onload="init()"><pre><code class="plaincommand">(* This program is free software; you can redistribute it and/or      *)
+(* modify it under the terms of the GNU Lesser General Public License *)
+(* as published by the Free Software Foundation; either version 2.1   *)
+(* of the License, or (at your option) any later version.             *)
+(*                                                                    *)
+(* This program is distributed in the hope that it will be useful,    *)
+(* but WITHOUT ANY WARRANTY; without even the implied warranty of     *)
+(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      *)
+(* GNU General Public License for more details.                       *)
+(*                                                                    *)
+(* You should have received a copy of the GNU Lesser General Public   *)
+(* License along with this program; if not, write to the Free         *)
+(* Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA *)
+(* 02110-1301 USA                                                     *)
+
+
+Require Import Arith.</code><br /><code class="plaincommand">Require Import Wf_nat.</code><br /><code class="plaincommand">Require Export MiscRsa.</code><br /><code class="plaincommand">(***********************************************************************
+**********************************************************************
+**********************************************************************
+
+	ITERATED SUMS
+*)
+
+Fixpoint sum_nm (n : nat) : nat -&gt; (nat -&gt; nat) -&gt; nat :=
+  fun (m : nat) (f : nat -&gt; nat) =&gt;
+  match n with
+  | O =&gt; f m
+  | S n' =&gt; f m + sum_nm n' (S m) f
+  end.</code><br /><button class="collapsible good" onmouseover="hoverLemma(&quot;BinomialsZdsum_nm_i&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdsum_nm_i&quot;)"><code class="buttontext">Lemma sum_nm_i :
+ forall (m n : nat) (f : nat -&gt; nat),
+ sum_nm (S n) m f = f m + sum_nm n (S m) f.</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (m n : nat) (f : forall _ : nat, nat),
+eq (sum_nm (S n) m f) (Init.Nat.add (f m) (sum_nm n (S m) f))&quot;, (&quot;&quot;)))" id="command-1-0" onmouseover="hoverTactic(&quot;1-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (m n : nat) (f : forall _ : nat, nat),
+eq (sum_nm (S n) m f) (Init.Nat.add (f m) (sum_nm n (S m) f))&quot;, (&quot;&quot;)))" id="command-1-1" onmouseover="hoverTactic(&quot;1-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (sum_nm (S n) m f) (Init.Nat.add (f m) (sum_nm n (S m) f))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-1-2" onmouseover="hoverTactic(&quot;1-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="()" id="command-1-3" onmouseover="hoverTactic(&quot;1-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (m n : nat) (f : forall _ : nat, nat),
+eq (sum_nm (S n) m f) (Init.Nat.add (f m) (sum_nm n (S m) f))&quot;, (&quot;&quot;)))" id="command-1-0" onmouseover="hoverTactic(&quot;1-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="()" id="command-1-1" onmouseover="hoverTactic(&quot;1-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdsum_nm_f&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdsum_nm_f&quot;)"><code class="buttontext">Lemma sum_nm_f :
+ forall (m n : nat) (f : nat -&gt; nat),
+ sum_nm (S n) m f = sum_nm n m f + f (m + S n).</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (m n : nat) (f : forall _ : nat, nat),
+eq (sum_nm (S n) m f)
+  (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n))))&quot;, (&quot;&quot;)))" id="command-3-0" onmouseover="hoverTactic(&quot;3-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (m n : nat) (f : forall _ : nat, nat),
+eq (sum_nm (S n) m f)
+  (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n))))&quot;, (&quot;&quot;)))" id="command-3-1" onmouseover="hoverTactic(&quot;3-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (m n : nat) (f : forall _ : nat, nat),
+eq (sum_nm (S n) m f)
+  (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n))))&quot;, (&quot;&quot;)))" id="command-3-0" onmouseover="hoverTactic(&quot;3-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros m n f.</code><br /></span><span data-subgoals="((&quot;eq (sum_nm (S n) m f)
+  (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-3-1" onmouseover="hoverTactic(&quot;3-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">generalize m.</code><br /></span><span data-subgoals="((&quot;forall m : nat,
+eq (sum_nm (S n) m f)
+  (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-3-2" onmouseover="hoverTactic(&quot;3-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">clear m.</code><br /></span><span data-subgoals="((&quot;forall m : nat,
+eq (sum_nm (S n) m f)
+  (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-3" onmouseover="hoverTactic(&quot;3-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim n.</code><br /></span><span data-subgoals="((&quot;forall m : nat,
+eq (sum_nm (S O) m f)
+  (Init.Nat.add (sum_nm O m f) (f (Init.Nat.add m (S O))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (sum_nm (S n) m f)
+         (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n)))))
+  (m : nat),
+eq (sum_nm (S (S n)) m f)
+  (Init.Nat.add (sum_nm (S n) m f) (f (Init.Nat.add m (S (S n)))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-4" onmouseover="hoverTactic(&quot;3-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall m : nat,
+eq (Init.Nat.add (f m) (f (S m)))
+  (Init.Nat.add (f m) (f (Init.Nat.add m (S O))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (sum_nm (S n) m f)
+         (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n)))))
+  (m : nat),
+eq (sum_nm (S (S n)) m f)
+  (Init.Nat.add (sum_nm (S n) m f) (f (Init.Nat.add m (S (S n)))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-5" onmouseover="hoverTactic(&quot;3-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (f m) (f (S m)))
+  (Init.Nat.add (f m) (f (Init.Nat.add m (S O))))&quot;, (&quot;m : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (sum_nm (S n) m f)
+         (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n)))))
+  (m : nat),
+eq (sum_nm (S (S n)) m f)
+  (Init.Nat.add (sum_nm (S n) m f) (f (Init.Nat.add m (S (S n)))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-6" onmouseover="hoverTactic(&quot;3-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (plus_comm m).</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (f m) (f (S m)))
+  (Init.Nat.add (f m) (f (Nat.add (S O) m)))&quot;, (&quot;m : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (sum_nm (S n) m f)
+         (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n)))))
+  (m : nat),
+eq (sum_nm (S (S n)) m f)
+  (Init.Nat.add (sum_nm (S n) m f) (f (Init.Nat.add m (S (S n)))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-7" onmouseover="hoverTactic(&quot;3-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (sum_nm (S n) m f)
+         (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n)))))
+  (m : nat),
+eq (sum_nm (S (S n)) m f)
+  (Init.Nat.add (sum_nm (S n) m f) (f (Init.Nat.add m (S (S n)))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-8" onmouseover="hoverTactic(&quot;3-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (Init.Nat.add (f m) (sum_nm n (S m) f))
+         (Init.Nat.add (sum_nm n m f) (f (Init.Nat.add m (S n)))))
+  (m : nat),
+eq (Init.Nat.add (f m) (Init.Nat.add (f (S m)) (sum_nm n (S (S m)) f)))
+  (Init.Nat.add (Init.Nat.add (f m) (sum_nm n (S m) f))
+     (f (Init.Nat.add m (S (S n)))))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-9" onmouseover="hoverTactic(&quot;3-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (f m) (Init.Nat.add (f (S m)) (sum_nm n0 (S (S m)) f)))
+  (Init.Nat.add (Init.Nat.add (f m) (sum_nm n0 (S m) f))
+     (f (Init.Nat.add m (S (S n0)))))&quot;, (&quot;m : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (f m) (sum_nm n0 (S m) f))
+  (Init.Nat.add (sum_nm n0 m f) (f (Init.Nat.add m (S n0))))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-10" onmouseover="hoverTactic(&quot;3-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite H.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (f m)
+     (Init.Nat.add (sum_nm n0 (S m) f) (f (Init.Nat.add (S m) (S n0)))))
+  (Init.Nat.add (Init.Nat.add (f m) (sum_nm n0 (S m) f))
+     (f (Init.Nat.add m (S (S n0)))))&quot;, (&quot;m : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (f m) (sum_nm n0 (S m) f))
+  (Init.Nat.add (sum_nm n0 m f) (f (Init.Nat.add m (S n0))))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-11" onmouseover="hoverTactic(&quot;3-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">repeat (rewrite (plus_comm m); simpl in |- *).</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (f m)
+     (Init.Nat.add (sum_nm n0 (S m) f) (f (S (S (Nat.add n0 m))))))
+  (Init.Nat.add (Init.Nat.add (f m) (sum_nm n0 (S m) f))
+     (f (S (S (Nat.add n0 m)))))&quot;, (&quot;m : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (f m) (sum_nm n0 (S m) f))
+  (Init.Nat.add (sum_nm n0 m f) (f (Init.Nat.add m (S n0))))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-3-12" onmouseover="hoverTactic(&quot;3-12&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="()" id="command-3-13" onmouseover="hoverTactic(&quot;3-13&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdsum_nm_ext&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdsum_nm_ext&quot;)"><code class="buttontext">Lemma sum_nm_ext :
+ forall (m n : nat) (f g : nat -&gt; nat),
+ (forall x : nat, x &lt;= n -&gt; f (m + x) = g (m + x)) -&gt;
+ sum_nm n m f = sum_nm n m g.</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (m n : nat) (f g : forall _ : nat, nat)
+  (_ : forall (x : nat) (_ : le x n),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n m f) (sum_nm n m g)&quot;, (&quot;&quot;)))" id="command-5-0" onmouseover="hoverTactic(&quot;5-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (m n : nat) (f g : forall _ : nat, nat)
+  (_ : forall (x : nat) (_ : le x n),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n m f) (sum_nm n m g)&quot;, (&quot;&quot;)))" id="command-5-1" onmouseover="hoverTactic(&quot;5-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (m n : nat) (f g : forall _ : nat, nat)
+  (_ : forall (x : nat) (_ : le x n),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n m f) (sum_nm n m g)&quot;, (&quot;&quot;)))" id="command-5-0" onmouseover="hoverTactic(&quot;5-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (m n : nat) (f g : forall _ : nat, nat)
+  (_ : forall (x : nat) (_ : le x n),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n m f) (sum_nm n m g)&quot;, (&quot;&quot;)))" id="command-5-1" onmouseover="hoverTactic(&quot;5-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros m n f g.</code><br /></span><span data-subgoals="((&quot;forall
+  _ : forall (x : nat) (_ : le x n),
+      eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x)),
+eq (sum_nm n m f) (sum_nm n m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-5-2" onmouseover="hoverTactic(&quot;5-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">generalize m.</code><br /></span><span data-subgoals="((&quot;forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n m f) (sum_nm n m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-5-3" onmouseover="hoverTactic(&quot;5-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">clear m.</code><br /></span><span data-subgoals="((&quot;forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n m f) (sum_nm n m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-4" onmouseover="hoverTactic(&quot;5-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim n.</code><br /></span><span data-subgoals="((&quot;forall (m : nat)
+  (_ : forall (x : nat) (_ : le x O),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm O m f) (sum_nm O m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat)
+         (_ : forall (x : nat) (_ : le x n),
+              eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+       eq (sum_nm n m f) (sum_nm n m g)) (m : nat)
+  (_ : forall (x : nat) (_ : le x (S n)),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm (S n) m f) (sum_nm (S n) m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-5" onmouseover="hoverTactic(&quot;5-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall (m : nat)
+  (_ : forall (x : nat) (_ : le x O),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (f m) (g m)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat)
+         (_ : forall (x : nat) (_ : le x n),
+              eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+       eq (sum_nm n m f) (sum_nm n m g)) (m : nat)
+  (_ : forall (x : nat) (_ : le x (S n)),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm (S n) m f) (sum_nm (S n) m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-6" onmouseover="hoverTactic(&quot;5-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (f m) (g m)&quot;, (&quot;H : forall (x : nat) (_ : le x O),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat)
+         (_ : forall (x : nat) (_ : le x n),
+              eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+       eq (sum_nm n m f) (sum_nm n m g)) (m : nat)
+  (_ : forall (x : nat) (_ : le x (S n)),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm (S n) m f) (sum_nm (S n) m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-7" onmouseover="hoverTactic(&quot;5-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (plus_n_O m).</code><br /></span><span data-subgoals="((&quot;eq (f (Init.Nat.add m O)) (g (Init.Nat.add m O))&quot;, (&quot;H : forall (x : nat) (_ : le x O),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat)
+         (_ : forall (x : nat) (_ : le x n),
+              eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+       eq (sum_nm n m f) (sum_nm n m g)) (m : nat)
+  (_ : forall (x : nat) (_ : le x (S n)),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm (S n) m f) (sum_nm (S n) m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-8" onmouseover="hoverTactic(&quot;5-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall (m : nat)
+         (_ : forall (x : nat) (_ : le x n),
+              eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+       eq (sum_nm n m f) (sum_nm n m g)) (m : nat)
+  (_ : forall (x : nat) (_ : le x (S n)),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm (S n) m f) (sum_nm (S n) m g)&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-9" onmouseover="hoverTactic(&quot;5-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall (m : nat)
+         (_ : forall (x : nat) (_ : le x n),
+              eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+       eq (sum_nm n m f) (sum_nm n m g)) (m : nat)
+  (_ : forall (x : nat) (_ : le x (S n)),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (Init.Nat.add (f m) (sum_nm n (S m) f))
+  (Init.Nat.add (g m) (sum_nm n (S m) g))&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-10" onmouseover="hoverTactic(&quot;5-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (f m) (sum_nm n0 (S m) f))
+  (Init.Nat.add (g m) (sum_nm n0 (S m) g))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-11" onmouseover="hoverTactic(&quot;5-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite H.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (f m) (sum_nm n0 (S m) g))
+  (Init.Nat.add (g m) (sum_nm n0 (S m) g))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (x : nat) (_ : le x n0),
+eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-12" onmouseover="hoverTactic(&quot;5-12&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (f m) (sum_nm n0 (S m) g))
+  (Init.Nat.add (g m) (sum_nm n0 (S m) g))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (x : nat) (_ : le x n0),
+eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-13" onmouseover="hoverTactic(&quot;5-13&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (plus_n_O m).</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (f (Init.Nat.add m O))
+     (sum_nm n0 (S (Init.Nat.add m O)) g))
+  (Init.Nat.add (g (Init.Nat.add m O))
+     (sum_nm n0 (S (Init.Nat.add m O)) g))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (x : nat) (_ : le x n0),
+eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-14" onmouseover="hoverTactic(&quot;5-14&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (f (Init.Nat.add m O))
+     (sum_nm n0 (S (Init.Nat.add m O)) g))
+  (Init.Nat.add (g (Init.Nat.add m O))
+     (sum_nm n0 (S (Init.Nat.add m O)) g))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (x : nat) (_ : le x n0),
+eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-15" onmouseover="hoverTactic(&quot;5-15&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite H0.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (g (Init.Nat.add m O))
+     (sum_nm n0 (S (Init.Nat.add m O)) g))
+  (Init.Nat.add (g (Init.Nat.add m O))
+     (sum_nm n0 (S (Init.Nat.add m O)) g))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (x : nat) (_ : le x n0),
+eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-16" onmouseover="hoverTactic(&quot;5-16&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;le O (S n0)&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)),(&quot;forall (x : nat) (_ : le x n0),
+eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-17" onmouseover="hoverTactic(&quot;5-17&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall (x : nat) (_ : le x n0),
+eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-18" onmouseover="hoverTactic(&quot;5-18&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (x : nat) (_ : le x n0),
+eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-19" onmouseover="hoverTactic(&quot;5-19&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros x H'.</code><br /></span><span data-subgoals="((&quot;eq (f (Init.Nat.add (S m) x)) (g (Init.Nat.add (S m) x))&quot;, (&quot;H' : le x n0&quot;,&quot;x : nat&quot;,&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-20" onmouseover="hoverTactic(&quot;5-20&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;eq (f (S (Init.Nat.add m x))) (g (S (Init.Nat.add m x)))&quot;, (&quot;H' : le x n0&quot;,&quot;x : nat&quot;,&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-21" onmouseover="hoverTactic(&quot;5-21&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite plus_n_Sm.</code><br /></span><span data-subgoals="((&quot;eq (f (Init.Nat.add m (S x))) (g (Init.Nat.add m (S x)))&quot;, (&quot;H' : le x n0&quot;,&quot;x : nat&quot;,&quot;H0 : forall (x : nat) (_ : le x (S n0)),
+eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))&quot;,&quot;m : nat&quot;,&quot;H : forall (m : nat)
+  (_ : forall (x : nat) (_ : le x n0),
+       eq (f (Init.Nat.add m x)) (g (Init.Nat.add m x))),
+eq (sum_nm n0 m f) (sum_nm n0 m g)&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;n : nat&quot;)))" id="command-5-22" onmouseover="hoverTactic(&quot;5-22&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="()" id="command-5-23" onmouseover="hoverTactic(&quot;5-23&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdsum_nm_add&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdsum_nm_add&quot;)"><code class="buttontext">Lemma sum_nm_add :
+ forall (m n : nat) (f g : nat -&gt; nat),
+ sum_nm n m f + sum_nm n m g = sum_nm n m (fun i : nat =&gt; f i + g i).</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (m n : nat) (f g : forall _ : nat, nat),
+eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+  (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;&quot;)))" id="command-7-0" onmouseover="hoverTactic(&quot;7-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (m n : nat) (f g : forall _ : nat, nat),
+eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+  (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;&quot;)))" id="command-7-1" onmouseover="hoverTactic(&quot;7-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (m n : nat) (f g : forall _ : nat, nat),
+eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+  (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;&quot;)))" id="command-7-0" onmouseover="hoverTactic(&quot;7-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (m n : nat) (f g : forall _ : nat, nat),
+eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+  (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;&quot;)))" id="command-7-1" onmouseover="hoverTactic(&quot;7-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros m n f g.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+  (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-2" onmouseover="hoverTactic(&quot;7-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">generalize m.</code><br /></span><span data-subgoals="((&quot;forall m : nat,
+eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+  (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-3" onmouseover="hoverTactic(&quot;7-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim n.</code><br /></span><span data-subgoals="((&quot;forall m : nat,
+eq (Init.Nat.add (sum_nm O m f) (sum_nm O m g))
+  (sum_nm O m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+         (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i))))
+  (m : nat),
+eq (Init.Nat.add (sum_nm (S n) m f) (sum_nm (S n) m g))
+  (sum_nm (S n) m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-4" onmouseover="hoverTactic(&quot;7-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+         (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i))))
+  (m : nat),
+eq (Init.Nat.add (sum_nm (S n) m f) (sum_nm (S n) m g))
+  (sum_nm (S n) m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-5" onmouseover="hoverTactic(&quot;7-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (Init.Nat.add (sum_nm n m f) (sum_nm n m g))
+         (sum_nm n m (fun i : nat => Init.Nat.add (f i) (g i))))
+  (m : nat),
+eq (Init.Nat.add (sum_nm (S n) m f) (sum_nm (S n) m g))
+  (sum_nm (S n) m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-6" onmouseover="hoverTactic(&quot;7-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (sum_nm (S n0) m0 f) (sum_nm (S n0) m0 g))
+  (sum_nm (S n0) m0 (fun i : nat => Init.Nat.add (f i) (g i)))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-7" onmouseover="hoverTactic(&quot;7-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (Init.Nat.add (f m0) (sum_nm n0 (S m0) f))
+     (Init.Nat.add (g m0) (sum_nm n0 (S m0) g)))
+  (Init.Nat.add (Init.Nat.add (f m0) (g m0))
+     (sum_nm n0 (S m0) (fun i : nat => Init.Nat.add (f i) (g i))))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-8" onmouseover="hoverTactic(&quot;7-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite &lt;- H.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (Init.Nat.add (f m0) (sum_nm n0 (S m0) f))
+     (Init.Nat.add (g m0) (sum_nm n0 (S m0) g)))
+  (Init.Nat.add (Init.Nat.add (f m0) (g m0))
+     (Init.Nat.add (sum_nm n0 (S m0) f) (sum_nm n0 (S m0) g)))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-9" onmouseover="hoverTactic(&quot;7-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">repeat rewrite plus_assoc_reverse.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (f m0)
+     (Init.Nat.add (sum_nm n0 (S m0) f)
+        (Init.Nat.add (g m0) (sum_nm n0 (S m0) g))))
+  (Init.Nat.add (f m0)
+     (Init.Nat.add (g m0)
+        (Init.Nat.add (sum_nm n0 (S m0) f) (sum_nm n0 (S m0) g))))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-10" onmouseover="hoverTactic(&quot;7-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">apply (f_equal2 (A1:=nat) (A2:=nat)).</code><br /></span><span data-subgoals="((&quot;eq (f m0) (f m0)&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)),(&quot;eq
+  (Init.Nat.add (sum_nm n0 (S m0) f)
+     (Init.Nat.add (g m0) (sum_nm n0 (S m0) g)))
+  (Init.Nat.add (g m0)
+     (Init.Nat.add (sum_nm n0 (S m0) f) (sum_nm n0 (S m0) g)))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-11" onmouseover="hoverTactic(&quot;7-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (sum_nm n0 (S m0) f)
+     (Init.Nat.add (g m0) (sum_nm n0 (S m0) g)))
+  (Init.Nat.add (g m0)
+     (Init.Nat.add (sum_nm n0 (S m0) f) (sum_nm n0 (S m0) g)))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-12" onmouseover="hoverTactic(&quot;7-12&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (sum_nm n0 (S m0) f)
+     (Init.Nat.add (g m0) (sum_nm n0 (S m0) g)))
+  (Init.Nat.add (g m0)
+     (Init.Nat.add (sum_nm n0 (S m0) f) (sum_nm n0 (S m0) g)))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-13" onmouseover="hoverTactic(&quot;7-13&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">repeat rewrite plus_assoc.</code><br /></span><span data-subgoals="((&quot;eq (Nat.add (Nat.add (sum_nm n0 (S m0) f) (g m0)) (sum_nm n0 (S m0) g))
+  (Nat.add (Nat.add (g m0) (sum_nm n0 (S m0) f)) (sum_nm n0 (S m0) g))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-14" onmouseover="hoverTactic(&quot;7-14&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">apply (f_equal2 (A1:=nat) (A2:=nat)).</code><br /></span><span data-subgoals="((&quot;eq (Nat.add (sum_nm n0 (S m0) f) (g m0))
+  (Nat.add (g m0) (sum_nm n0 (S m0) f))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)),(&quot;eq (sum_nm n0 (S m0) g) (sum_nm n0 (S m0) g)&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-15" onmouseover="hoverTactic(&quot;7-15&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;eq (Nat.add (sum_nm n0 (S m0) f) (g m0))
+  (Nat.add (g m0) (sum_nm n0 (S m0) f))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)),(&quot;eq (sum_nm n0 (S m0) g) (sum_nm n0 (S m0) g)&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-16" onmouseover="hoverTactic(&quot;7-16&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">apply plus_comm.</code><br /></span><span data-subgoals="((&quot;eq (sum_nm n0 (S m0) g) (sum_nm n0 (S m0) g)&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.add (sum_nm n0 m f) (sum_nm n0 m g))
+  (sum_nm n0 m (fun i : nat => Init.Nat.add (f i) (g i)))&quot;,&quot;n0 : nat&quot;,&quot;f,g : forall _ : nat, nat&quot;,&quot;m,n : nat&quot;)))" id="command-7-17" onmouseover="hoverTactic(&quot;7-17&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="()" id="command-7-18" onmouseover="hoverTactic(&quot;7-18&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdsum_nm_times&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdsum_nm_times&quot;)"><code class="buttontext">Lemma sum_nm_times :
+ forall (m n x : nat) (f : nat -&gt; nat),
+ x * sum_nm n m f = sum_nm n m (fun i : nat =&gt; x * f i).</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (m n x : nat) (f : forall _ : nat, nat),
+eq (Init.Nat.mul x (sum_nm n m f))
+  (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;&quot;)))" id="command-9-0" onmouseover="hoverTactic(&quot;9-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (m n x : nat) (f : forall _ : nat, nat),
+eq (Init.Nat.mul x (sum_nm n m f))
+  (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;&quot;)))" id="command-9-1" onmouseover="hoverTactic(&quot;9-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (m n x : nat) (f : forall _ : nat, nat),
+eq (Init.Nat.mul x (sum_nm n m f))
+  (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;&quot;)))" id="command-9-0" onmouseover="hoverTactic(&quot;9-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (m n x : nat) (f : forall _ : nat, nat),
+eq (Init.Nat.mul x (sum_nm n m f))
+  (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;&quot;)))" id="command-9-1" onmouseover="hoverTactic(&quot;9-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros m n x f.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.mul x (sum_nm n m f))
+  (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-2" onmouseover="hoverTactic(&quot;9-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">generalize m.</code><br /></span><span data-subgoals="((&quot;forall m : nat,
+eq (Init.Nat.mul x (sum_nm n m f))
+  (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-3" onmouseover="hoverTactic(&quot;9-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim n.</code><br /></span><span data-subgoals="((&quot;forall m : nat,
+eq (Init.Nat.mul x (sum_nm O m f))
+  (sum_nm O m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (Init.Nat.mul x (sum_nm n m f))
+         (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))) 
+  (m : nat),
+eq (Init.Nat.mul x (sum_nm (S n) m f))
+  (sum_nm (S n) m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-4" onmouseover="hoverTactic(&quot;9-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (Init.Nat.mul x (sum_nm n m f))
+         (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))) 
+  (m : nat),
+eq (Init.Nat.mul x (sum_nm (S n) m f))
+  (sum_nm (S n) m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-5" onmouseover="hoverTactic(&quot;9-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall m : nat,
+       eq (Init.Nat.mul x (sum_nm n m f))
+         (sum_nm n m (fun i : nat => Init.Nat.mul x (f i)))) 
+  (m : nat),
+eq (Init.Nat.mul x (sum_nm (S n) m f))
+  (sum_nm (S n) m (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-6" onmouseover="hoverTactic(&quot;9-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.mul x (sum_nm (S n0) m0 f))
+  (sum_nm (S n0) m0 (fun i : nat => Init.Nat.mul x (f i)))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.mul x (sum_nm n0 m f))
+  (sum_nm n0 m (fun i : nat => Init.Nat.mul x (f i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-7" onmouseover="hoverTactic(&quot;9-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.mul x (Init.Nat.add (f m0) (sum_nm n0 (S m0) f)))
+  (Init.Nat.add (Init.Nat.mul x (f m0))
+     (sum_nm n0 (S m0) (fun i : nat => Init.Nat.mul x (f i))))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.mul x (sum_nm n0 m f))
+  (sum_nm n0 m (fun i : nat => Init.Nat.mul x (f i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-8" onmouseover="hoverTactic(&quot;9-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite &lt;- H.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.mul x (Init.Nat.add (f m0) (sum_nm n0 (S m0) f)))
+  (Init.Nat.add (Init.Nat.mul x (f m0))
+     (Init.Nat.mul x (sum_nm n0 (S m0) f)))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.mul x (sum_nm n0 m f))
+  (sum_nm n0 m (fun i : nat => Init.Nat.mul x (f i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-9" onmouseover="hoverTactic(&quot;9-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.mul x (Init.Nat.add (f m0) (sum_nm n0 (S m0) f)))
+  (Init.Nat.add (Init.Nat.mul x (f m0))
+     (Init.Nat.mul x (sum_nm n0 (S m0) f)))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.mul x (sum_nm n0 m f))
+  (sum_nm n0 m (fun i : nat => Init.Nat.mul x (f i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-10" onmouseover="hoverTactic(&quot;9-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">repeat rewrite (mult_comm x).</code><br /></span><span data-subgoals="((&quot;eq (Nat.mul (Init.Nat.add (f m0) (sum_nm n0 (S m0) f)) x)
+  (Init.Nat.add (Nat.mul (f m0) x) (Nat.mul (sum_nm n0 (S m0) f) x))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.mul x (sum_nm n0 m f))
+  (sum_nm n0 m (fun i : nat => Init.Nat.mul x (f i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-11" onmouseover="hoverTactic(&quot;9-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;eq (Nat.mul (Init.Nat.add (f m0) (sum_nm n0 (S m0) f)) x)
+  (Init.Nat.add (Nat.mul (f m0) x) (Nat.mul (sum_nm n0 (S m0) f) x))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.mul x (sum_nm n0 m f))
+  (sum_nm n0 m (fun i : nat => Init.Nat.mul x (f i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-12" onmouseover="hoverTactic(&quot;9-12&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite mult_plus_distr_r.</code><br /></span><span data-subgoals="((&quot;eq (Nat.add (Nat.mul (f m0) x) (Nat.mul (sum_nm n0 (S m0) f) x))
+  (Init.Nat.add (Nat.mul (f m0) x) (Nat.mul (sum_nm n0 (S m0) f) x))&quot;, (&quot;m0 : nat&quot;,&quot;H : forall m : nat,
+eq (Init.Nat.mul x (sum_nm n0 m f))
+  (sum_nm n0 m (fun i : nat => Init.Nat.mul x (f i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;m,n,x : nat&quot;)))" id="command-9-13" onmouseover="hoverTactic(&quot;9-13&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="()" id="command-9-14" onmouseover="hoverTactic(&quot;9-14&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdinv_sum_nm&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdinv_sum_nm&quot;)"><code class="buttontext">Lemma inv_sum_nm :
+ forall (P : nat -&gt; Prop) (i n : nat) (f : nat -&gt; nat),
+ (forall a b : nat, P a -&gt; P b -&gt; P (a + b)) -&gt;
+ (forall x : nat, x &lt;= n -&gt; P (f (i + x))) -&gt; P (sum_nm n i f).</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (P : forall _ : nat, Prop) (i n : nat) (f : forall _ : nat, nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;, (&quot;&quot;)))" id="command-11-0" onmouseover="hoverTactic(&quot;11-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (P : forall _ : nat, Prop) (i n : nat) (f : forall _ : nat, nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;, (&quot;&quot;)))" id="command-11-1" onmouseover="hoverTactic(&quot;11-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (P : forall _ : nat, Prop) (i n : nat) (f : forall _ : nat, nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;, (&quot;&quot;)))" id="command-11-0" onmouseover="hoverTactic(&quot;11-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (P : forall _ : nat, Prop) (i n : nat) (f : forall _ : nat, nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;, (&quot;&quot;)))" id="command-11-1" onmouseover="hoverTactic(&quot;11-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros P i n f.</code><br /></span><span data-subgoals="((&quot;forall
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;i,n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-2" onmouseover="hoverTactic(&quot;11-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">generalize i.</code><br /></span><span data-subgoals="((&quot;forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;i,n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-3" onmouseover="hoverTactic(&quot;11-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">clear i.</code><br /></span><span data-subgoals="((&quot;forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-4" onmouseover="hoverTactic(&quot;11-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim n.</code><br /></span><span data-subgoals="((&quot;forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x O), P (f (Init.Nat.add i x))),
+P (sum_nm O i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;forall (n : nat)
+  (_ : forall (i : nat)
+         (_ : forall (a b : nat) (_ : P a) (_ : P b),
+              P (Init.Nat.add a b))
+         (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+       P (sum_nm n i f)) (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))),
+P (sum_nm (S n) i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-5" onmouseover="hoverTactic(&quot;11-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">clear n.</code><br /></span><span data-subgoals="((&quot;forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x O), P (f (Init.Nat.add i x))),
+P (sum_nm O i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;forall (n : nat)
+  (_ : forall (i : nat)
+         (_ : forall (a b : nat) (_ : P a) (_ : P b),
+              P (Init.Nat.add a b))
+         (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+       P (sum_nm n i f)) (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))),
+P (sum_nm (S n) i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-6" onmouseover="hoverTactic(&quot;11-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;P (sum_nm O i f)&quot;, (&quot;H0 : forall (x : nat) (_ : le x O), P (f (Init.Nat.add i x))&quot;,&quot;H : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;forall (n : nat)
+  (_ : forall (i : nat)
+         (_ : forall (a b : nat) (_ : P a) (_ : P b),
+              P (Init.Nat.add a b))
+         (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+       P (sum_nm n i f)) (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))),
+P (sum_nm (S n) i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-7" onmouseover="hoverTactic(&quot;11-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;P (f i)&quot;, (&quot;H0 : forall (x : nat) (_ : le x O), P (f (Init.Nat.add i x))&quot;,&quot;H : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;forall (n : nat)
+  (_ : forall (i : nat)
+         (_ : forall (a b : nat) (_ : P a) (_ : P b),
+              P (Init.Nat.add a b))
+         (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+       P (sum_nm n i f)) (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))),
+P (sum_nm (S n) i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-8" onmouseover="hoverTactic(&quot;11-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (plus_n_O i).</code><br /></span><span data-subgoals="((&quot;P (f (Init.Nat.add i O))&quot;, (&quot;H0 : forall (x : nat) (_ : le x O), P (f (Init.Nat.add i x))&quot;,&quot;H : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;forall (n : nat)
+  (_ : forall (i : nat)
+         (_ : forall (a b : nat) (_ : P a) (_ : P b),
+              P (Init.Nat.add a b))
+         (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+       P (sum_nm n i f)) (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))),
+P (sum_nm (S n) i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-9" onmouseover="hoverTactic(&quot;11-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall (i : nat)
+         (_ : forall (a b : nat) (_ : P a) (_ : P b),
+              P (Init.Nat.add a b))
+         (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+       P (sum_nm n i f)) (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))),
+P (sum_nm (S n) i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n : nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-10" onmouseover="hoverTactic(&quot;11-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">clear n.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall (i : nat)
+         (_ : forall (a b : nat) (_ : P a) (_ : P b),
+              P (Init.Nat.add a b))
+         (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+       P (sum_nm n i f)) (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))),
+P (sum_nm (S n) i f)&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-11" onmouseover="hoverTactic(&quot;11-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;P (sum_nm (S n) i f)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-12" onmouseover="hoverTactic(&quot;11-12&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;P (Init.Nat.add (f i) (sum_nm n (S i) f))&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-13" onmouseover="hoverTactic(&quot;11-13&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">apply H0.</code><br /></span><span data-subgoals="((&quot;P (f i)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;P (sum_nm n (S i) f)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-14" onmouseover="hoverTactic(&quot;11-14&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;P (f i)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;P (sum_nm n (S i) f)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-15" onmouseover="hoverTactic(&quot;11-15&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (plus_n_O i).</code><br /></span><span data-subgoals="((&quot;P (f (Init.Nat.add i O))&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;P (sum_nm n (S i) f)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-16" onmouseover="hoverTactic(&quot;11-16&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;P (sum_nm n (S i) f)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-17" onmouseover="hoverTactic(&quot;11-17&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;P (sum_nm n (S i) f)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-18" onmouseover="hoverTactic(&quot;11-18&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">apply H.</code><br /></span><span data-subgoals="((&quot;forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)),(&quot;forall (x : nat) (_ : le x n), P (f (Init.Nat.add (S i) x))&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-19" onmouseover="hoverTactic(&quot;11-19&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (x : nat) (_ : le x n), P (f (Init.Nat.add (S i) x))&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-20" onmouseover="hoverTactic(&quot;11-20&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (x : nat) (_ : le x n), P (f (Init.Nat.add (S i) x))&quot;, (&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-21" onmouseover="hoverTactic(&quot;11-21&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros x H'.</code><br /></span><span data-subgoals="((&quot;P (f (Init.Nat.add (S i) x))&quot;, (&quot;H' : le x n&quot;,&quot;x : nat&quot;,&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-22" onmouseover="hoverTactic(&quot;11-22&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;P (f (S (Init.Nat.add i x)))&quot;, (&quot;H' : le x n&quot;,&quot;x : nat&quot;,&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-23" onmouseover="hoverTactic(&quot;11-23&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite plus_n_Sm.</code><br /></span><span data-subgoals="((&quot;P (f (Init.Nat.add i (S x)))&quot;, (&quot;H' : le x n&quot;,&quot;x : nat&quot;,&quot;H1 : forall (x : nat) (_ : le x (S n)), P (f (Init.Nat.add i x))&quot;,&quot;H0 : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b)&quot;,&quot;i : nat&quot;,&quot;H : forall (i : nat)
+  (_ : forall (a b : nat) (_ : P a) (_ : P b), P (Init.Nat.add a b))
+  (_ : forall (x : nat) (_ : le x n), P (f (Init.Nat.add i x))),
+P (sum_nm n i f)&quot;,&quot;n : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;P : forall _ : nat, Prop&quot;)))" id="command-11-24" onmouseover="hoverTactic(&quot;11-24&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="()" id="command-11-25" onmouseover="hoverTactic(&quot;11-25&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdt_sum_Svars&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdt_sum_Svars&quot;)"><code class="buttontext">Lemma t_sum_Svars :
+ forall (n k : nat) (f : nat -&gt; nat),
+ sum_nm k n f = sum_nm k (S n) (fun i : nat =&gt; f (pred i)).</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (n k : nat) (f : forall _ : nat, nat),
+eq (sum_nm k n f) (sum_nm k (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;&quot;)))" id="command-13-0" onmouseover="hoverTactic(&quot;13-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (n k : nat) (f : forall _ : nat, nat),
+eq (sum_nm k n f) (sum_nm k (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;&quot;)))" id="command-13-1" onmouseover="hoverTactic(&quot;13-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (n k : nat) (f : forall _ : nat, nat),
+eq (sum_nm k n f) (sum_nm k (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;&quot;)))" id="command-13-0" onmouseover="hoverTactic(&quot;13-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (n k : nat) (f : forall _ : nat, nat),
+eq (sum_nm k n f) (sum_nm k (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;&quot;)))" id="command-13-1" onmouseover="hoverTactic(&quot;13-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros n k f.</code><br /></span><span data-subgoals="((&quot;eq (sum_nm k n f) (sum_nm k (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)))" id="command-13-2" onmouseover="hoverTactic(&quot;13-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">generalize n.</code><br /></span><span data-subgoals="((&quot;forall n : nat,
+eq (sum_nm k n f) (sum_nm k (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)))" id="command-13-3" onmouseover="hoverTactic(&quot;13-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim k.</code><br /></span><span data-subgoals="((&quot;forall n : nat,
+eq (sum_nm O n f) (sum_nm O (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall n0 : nat,
+       eq (sum_nm n n0 f)
+         (sum_nm n (S n0) (fun i : nat => f (Init.Nat.pred i))))
+  (n0 : nat),
+eq (sum_nm (S n) n0 f)
+  (sum_nm (S n) (S n0) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)))" id="command-13-4" onmouseover="hoverTactic(&quot;13-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall n0 : nat,
+       eq (sum_nm n n0 f)
+         (sum_nm n (S n0) (fun i : nat => f (Init.Nat.pred i))))
+  (n0 : nat),
+eq (sum_nm (S n) n0 f)
+  (sum_nm (S n) (S n0) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)))" id="command-13-5" onmouseover="hoverTactic(&quot;13-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall n0 : nat,
+       eq (sum_nm n n0 f)
+         (sum_nm n (S n0) (fun i : nat => f (Init.Nat.pred i))))
+  (n0 : nat),
+eq (sum_nm (S n) n0 f)
+  (sum_nm (S n) (S n0) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)))" id="command-13-6" onmouseover="hoverTactic(&quot;13-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (sum_nm (S n0) n1 f)
+  (sum_nm (S n0) (S n1) (fun i : nat => f (Init.Nat.pred i)))&quot;, (&quot;n1 : nat&quot;,&quot;H : forall n : nat,
+eq (sum_nm n0 n f)
+  (sum_nm n0 (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)))" id="command-13-7" onmouseover="hoverTactic(&quot;13-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (f n1) (sum_nm n0 (S n1) f))
+  (Init.Nat.add (f n1)
+     (sum_nm n0 (S (S n1)) (fun i : nat => f (Init.Nat.pred i))))&quot;, (&quot;n1 : nat&quot;,&quot;H : forall n : nat,
+eq (sum_nm n0 n f)
+  (sum_nm n0 (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)))" id="command-13-8" onmouseover="hoverTactic(&quot;13-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite &lt;- H.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (f n1) (sum_nm n0 (S n1) f))
+  (Init.Nat.add (f n1) (sum_nm n0 (S n1) f))&quot;, (&quot;n1 : nat&quot;,&quot;H : forall n : nat,
+eq (sum_nm n0 n f)
+  (sum_nm n0 (S n) (fun i : nat => f (Init.Nat.pred i)))&quot;,&quot;n0 : nat&quot;,&quot;f : forall _ : nat, nat&quot;,&quot;n,k : nat&quot;)))" id="command-13-9" onmouseover="hoverTactic(&quot;13-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="()" id="command-13-10" onmouseover="hoverTactic(&quot;13-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><code class="plaincommand">(***********************************************************************
+**********************************************************************
+**********************************************************************
+
+	BINOMIAL
+*)
+
+Fixpoint binomial (a : nat) : nat -&gt; nat :=
+  fun b : nat =&gt;
+  match a, b with
+  | _, O =&gt; 1
+  | O, S b' =&gt; 0
+  | S a', S b' =&gt; binomial a' (S b') + binomial a' b'
+  end.</code><br /><button class="collapsible good" onmouseover="hoverLemma(&quot;BinomialsZdbinomial_def1&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdbinomial_def1&quot;)"><code class="buttontext">Lemma binomial_def1 : forall n : nat, binomial n 0 = 1.</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall n : nat, eq (binomial n O) (S O)&quot;, (&quot;&quot;)))" id="command-15-0" onmouseover="hoverTactic(&quot;15-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (binomial n O) (S O)&quot;, (&quot;&quot;)))" id="command-15-1" onmouseover="hoverTactic(&quot;15-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (binomial n O) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-15-2" onmouseover="hoverTactic(&quot;15-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">destruct n.</code><br /></span><span data-subgoals="((&quot;eq (binomial O O) (S O)&quot;, (&quot;&quot;)),(&quot;eq (binomial (S n) O) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-15-3" onmouseover="hoverTactic(&quot;15-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="((&quot;eq (binomial (S n) O) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-15-4" onmouseover="hoverTactic(&quot;15-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="()" id="command-15-5" onmouseover="hoverTactic(&quot;15-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall n : nat, eq (binomial n O) (S O)&quot;, (&quot;&quot;)))" id="command-15-0" onmouseover="hoverTactic(&quot;15-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (binomial n O) (S O)&quot;, (&quot;&quot;)))" id="command-15-1" onmouseover="hoverTactic(&quot;15-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simple induction n.</code><br /></span><span data-subgoals="((&quot;eq (binomial O O) (S O)&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat) (_ : eq (binomial n O) (S O)),
+eq (binomial (S n) O) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-15-2" onmouseover="hoverTactic(&quot;15-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : eq (binomial n O) (S O)),
+eq (binomial (S n) O) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-15-3" onmouseover="hoverTactic(&quot;15-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="()" id="command-15-4" onmouseover="hoverTactic(&quot;15-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdbinomial_def2&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdbinomial_def2&quot;)"><code class="buttontext">Lemma binomial_def2 : forall n m : nat, n &lt; m -&gt; binomial n m = 0.</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (n m : nat) (_ : lt n m), eq (binomial n m) O&quot;, (&quot;&quot;)))" id="command-17-0" onmouseover="hoverTactic(&quot;17-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (n m : nat) (_ : lt n m), eq (binomial n m) O&quot;, (&quot;&quot;)))" id="command-17-1" onmouseover="hoverTactic(&quot;17-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (n m : nat) (_ : lt n m), eq (binomial n m) O&quot;, (&quot;&quot;)))" id="command-17-0" onmouseover="hoverTactic(&quot;17-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simple induction n.</code><br /></span><span data-subgoals="((&quot;forall (m : nat) (_ : lt O m), eq (binomial O m) O&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-1" onmouseover="hoverTactic(&quot;17-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall (m : nat) (_ : lt O m),
+eq match m with
+   | O => S O
+   | S _ => O
+   end O&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-2" onmouseover="hoverTactic(&quot;17-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (m : nat) (_ : lt O m),
+eq match m with
+   | O => S O
+   | S _ => O
+   end O&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-3" onmouseover="hoverTactic(&quot;17-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros m.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O m, eq match m with
+                      | O => S O
+                      | S _ => O
+                      end O&quot;, (&quot;n,m : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-4" onmouseover="hoverTactic(&quot;17-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">case m.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O O, eq (S O) O&quot;, (&quot;n,m : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-5" onmouseover="hoverTactic(&quot;17-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O O, eq (S O) O&quot;, (&quot;n,m : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-6" onmouseover="hoverTactic(&quot;17-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O O, eq (S O) O&quot;, (&quot;n,m : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-7" onmouseover="hoverTactic(&quot;17-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros H'.</code><br /></span><span data-subgoals="((&quot;eq (S O) O&quot;, (&quot;H' : lt O O&quot;,&quot;n,m : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-8" onmouseover="hoverTactic(&quot;17-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">inversion H'.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : lt O (S n)), eq O O&quot;, (&quot;n,m : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-9" onmouseover="hoverTactic(&quot;17-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : lt O (S n)), eq O O&quot;, (&quot;n,m : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-10" onmouseover="hoverTactic(&quot;17-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m), eq (binomial (S n) m) O&quot;, (&quot;n : nat&quot;)))" id="command-17-11" onmouseover="hoverTactic(&quot;17-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m),
+eq
+  match m with
+  | O => S O
+  | S b' => Init.Nat.add (binomial n (S b')) (binomial n b')
+  end O&quot;, (&quot;n : nat&quot;)))" id="command-17-12" onmouseover="hoverTactic(&quot;17-12&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall (m : nat) (_ : lt n m), eq (binomial n m) O) 
+  (m : nat) (_ : lt (S n) m),
+eq
+  match m with
+  | O => S O
+  | S b' => Init.Nat.add (binomial n (S b')) (binomial n b')
+  end O&quot;, (&quot;n : nat&quot;)))" id="command-17-13" onmouseover="hoverTactic(&quot;17-13&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros n0 H' m.</code><br /></span><span data-subgoals="((&quot;forall _ : lt (S n0) m,
+eq
+  match m with
+  | O => S O
+  | S b' => Init.Nat.add (binomial n0 (S b')) (binomial n0 b')
+  end O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-14" onmouseover="hoverTactic(&quot;17-14&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">case m.</code><br /></span><span data-subgoals="((&quot;forall _ : lt (S n0) O, eq (S O) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)),(&quot;forall (n : nat) (_ : lt (S n0) (S n)),
+eq (Init.Nat.add (binomial n0 (S n)) (binomial n0 n)) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-15" onmouseover="hoverTactic(&quot;17-15&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall _ : lt (S n0) O, eq (S O) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)),(&quot;forall (n : nat) (_ : lt (S n0) (S n)),
+eq (Init.Nat.add (binomial n0 (S n)) (binomial n0 n)) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-16" onmouseover="hoverTactic(&quot;17-16&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall _ : lt (S n0) O, eq (S O) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)),(&quot;forall (n : nat) (_ : lt (S n0) (S n)),
+eq (Init.Nat.add (binomial n0 (S n)) (binomial n0 n)) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-17" onmouseover="hoverTactic(&quot;17-17&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros H'0.</code><br /></span><span data-subgoals="((&quot;eq (S O) O&quot;, (&quot;H'0 : lt (S n0) O&quot;,&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)),(&quot;forall (n : nat) (_ : lt (S n0) (S n)),
+eq (Init.Nat.add (binomial n0 (S n)) (binomial n0 n)) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-18" onmouseover="hoverTactic(&quot;17-18&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">inversion H'0.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : lt (S n0) (S n)),
+eq (Init.Nat.add (binomial n0 (S n)) (binomial n0 n)) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-19" onmouseover="hoverTactic(&quot;17-19&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : lt (S n0) (S n)),
+eq (Init.Nat.add (binomial n0 (S n)) (binomial n0 n)) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-20" onmouseover="hoverTactic(&quot;17-20&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : lt (S n0) (S n)),
+eq (Init.Nat.add (binomial n0 (S n)) (binomial n0 n)) O&quot;, (&quot;m : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-21" onmouseover="hoverTactic(&quot;17-21&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros n1 H'0.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (binomial n0 (S n1)) (binomial n0 n1)) O&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-22" onmouseover="hoverTactic(&quot;17-22&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite H'.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add O (binomial n0 n1)) O&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)),(&quot;lt n0 (S n1)&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-23" onmouseover="hoverTactic(&quot;17-23&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add O (binomial n0 n1)) O&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)),(&quot;lt n0 (S n1)&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-24" onmouseover="hoverTactic(&quot;17-24&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite H'.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add O O) O&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)),(&quot;lt n0 (S n1)&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-25" onmouseover="hoverTactic(&quot;17-25&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;lt n0 n1&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)),(&quot;lt n0 (S n1)&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-26" onmouseover="hoverTactic(&quot;17-26&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;lt n0 (S n1)&quot;, (&quot;H'0 : lt (S n0) (S n1)&quot;,&quot;m,n1 : nat&quot;,&quot;H' : forall (m : nat) (_ : lt n0 m), eq (binomial n0 m) O&quot;,&quot;n,n0 : nat&quot;)))" id="command-17-27" onmouseover="hoverTactic(&quot;17-27&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="()" id="command-17-28" onmouseover="hoverTactic(&quot;17-28&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdbinomial_def3&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdbinomial_def3&quot;)"><code class="buttontext">Lemma binomial_def3 : forall n : nat, binomial n n = 1.</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall n : nat, eq (binomial n n) (S O)&quot;, (&quot;&quot;)))" id="command-19-0" onmouseover="hoverTactic(&quot;19-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (binomial n n) (S O)&quot;, (&quot;&quot;)))" id="command-19-1" onmouseover="hoverTactic(&quot;19-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall n : nat, eq (binomial n n) (S O)&quot;, (&quot;&quot;)))" id="command-19-0" onmouseover="hoverTactic(&quot;19-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (binomial n n) (S O)&quot;, (&quot;&quot;)))" id="command-19-1" onmouseover="hoverTactic(&quot;19-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simple induction n.</code><br /></span><span data-subgoals="((&quot;eq (binomial O O) (S O)&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat) (_ : eq (binomial n n) (S O)),
+eq (binomial (S n) (S n)) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-19-2" onmouseover="hoverTactic(&quot;19-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (binomial O O) (S O)&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat) (_ : eq (binomial n n) (S O)),
+eq (binomial (S n) (S n)) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-19-3" onmouseover="hoverTactic(&quot;19-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;eq (S O) (S O)&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat) (_ : eq (binomial n n) (S O)),
+eq (binomial (S n) (S n)) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-19-4" onmouseover="hoverTactic(&quot;19-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : eq (binomial n n) (S O)),
+eq (binomial (S n) (S n)) (S O)&quot;, (&quot;n : nat&quot;)))" id="command-19-5" onmouseover="hoverTactic(&quot;19-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (binomial (S n0) (S n0)) (S O)&quot;, (&quot;H : eq (binomial n0 n0) (S O)&quot;,&quot;n,n0 : nat&quot;)))" id="command-19-6" onmouseover="hoverTactic(&quot;19-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (binomial n0 (S n0)) (binomial n0 n0)) (S O)&quot;, (&quot;H : eq (binomial n0 n0) (S O)&quot;,&quot;n,n0 : nat&quot;)))" id="command-19-7" onmouseover="hoverTactic(&quot;19-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (binomial n0 (S n0)) (binomial n0 n0)) (S O)&quot;, (&quot;H : eq (binomial n0 n0) (S O)&quot;,&quot;n,n0 : nat&quot;)))" id="command-19-8" onmouseover="hoverTactic(&quot;19-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (binomial_def2 n0 (S n0)).</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add O (binomial n0 n0)) (S O)&quot;, (&quot;H : eq (binomial n0 n0) (S O)&quot;,&quot;n,n0 : nat&quot;)),(&quot;lt n0 (S n0)&quot;, (&quot;H : eq (binomial n0 n0) (S O)&quot;,&quot;n,n0 : nat&quot;)))" id="command-19-9" onmouseover="hoverTactic(&quot;19-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="((&quot;lt n0 (S n0)&quot;, (&quot;H : eq (binomial n0 n0) (S O)&quot;,&quot;n,n0 : nat&quot;)))" id="command-19-10" onmouseover="hoverTactic(&quot;19-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="()" id="command-19-11" onmouseover="hoverTactic(&quot;19-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible good" onmouseover="hoverLemma(&quot;BinomialsZdbinomial_def4&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdbinomial_def4&quot;)"><code class="buttontext">Lemma binomial_def4 :
+ forall n k : nat,
+ k &lt; n -&gt; binomial (S n) (S k) = binomial n (S k) + binomial n k.</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (n k : nat) (_ : lt k n),
+eq (binomial (S n) (S k))
+  (Init.Nat.add (binomial n (S k)) (binomial n k))&quot;, (&quot;&quot;)))" id="command-21-0" onmouseover="hoverTactic(&quot;21-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (n k : nat) (_ : lt k n),
+eq (binomial (S n) (S k))
+  (Init.Nat.add (binomial n (S k)) (binomial n k))&quot;, (&quot;&quot;)))" id="command-21-1" onmouseover="hoverTactic(&quot;21-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (binomial (S n) (S k))
+  (Init.Nat.add (binomial n (S k)) (binomial n k))&quot;, (&quot;H : lt k n&quot;,&quot;n,k : nat&quot;)))" id="command-21-2" onmouseover="hoverTactic(&quot;21-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.add (binomial n (S k)) (binomial n k))
+  (Init.Nat.add (binomial n (S k)) (binomial n k))&quot;, (&quot;H : lt k n&quot;,&quot;n,k : nat&quot;)))" id="command-21-3" onmouseover="hoverTactic(&quot;21-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">f_equal.</code><br /></span><span data-subgoals="()" id="command-21-4" onmouseover="hoverTactic(&quot;21-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (n k : nat) (_ : lt k n),
+eq (binomial (S n) (S k))
+  (Init.Nat.add (binomial n (S k)) (binomial n k))&quot;, (&quot;&quot;)))" id="command-21-0" onmouseover="hoverTactic(&quot;21-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (n k : nat) (_ : lt k n),
+eq (binomial (S n) (S k))
+  (Init.Nat.add (binomial n (S k)) (binomial n k))&quot;, (&quot;&quot;)))" id="command-21-1" onmouseover="hoverTactic(&quot;21-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *.</code><br /></span><span data-subgoals="((&quot;forall (n k : nat) (_ : lt k n),
+eq (Init.Nat.add (binomial n (S k)) (binomial n k))
+  (Init.Nat.add (binomial n (S k)) (binomial n k))&quot;, (&quot;&quot;)))" id="command-21-2" onmouseover="hoverTactic(&quot;21-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto.</code><br /></span><span data-subgoals="()" id="command-21-3" onmouseover="hoverTactic(&quot;21-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible okay" onmouseover="hoverLemma(&quot;BinomialsZdbinomial_fact&quot;)" onmouseout="unhoverLemma(&quot;BinomialsZdbinomial_fact&quot;)"><code class="buttontext">Lemma binomial_fact :
+ forall m n : nat,
+ binomial (n + m) n * (factorial n * factorial m) = factorial (n + m).</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall m n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;, (&quot;&quot;)))" id="command-23-0" onmouseover="hoverTactic(&quot;23-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall m n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;, (&quot;&quot;)))" id="command-23-1" onmouseover="hoverTactic(&quot;23-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Admitted.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall m n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;, (&quot;&quot;)))" id="command-23-0" onmouseover="hoverTactic(&quot;23-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall m n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;, (&quot;&quot;)))" id="command-23-1" onmouseover="hoverTactic(&quot;23-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros m; elim m; clear m.</code><br /></span><span data-subgoals="((&quot;forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n O) n)
+     (Init.Nat.mul (factorial n) (factorial O)))
+  (factorial (Init.Nat.add n O))&quot;, (&quot;&quot;)),(&quot;forall (n : nat)
+  (_ : forall n0 : nat,
+       eq
+         (Init.Nat.mul (binomial (Init.Nat.add n0 n) n0)
+            (Init.Nat.mul (factorial n0) (factorial n)))
+         (factorial (Init.Nat.add n0 n))) (n0 : nat),
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n0 (S n)) n0)
+     (Init.Nat.mul (factorial n0) (factorial (S n))))
+  (factorial (Init.Nat.add n0 (S n)))&quot;, (&quot;&quot;)))" id="command-23-2" onmouseover="hoverTactic(&quot;23-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros n; rewrite plus_comm; simpl in |- *; rewrite binomial_def3;
+ simpl in |- *; rewrite mult_comm; simpl in |- *; rewrite plus_comm;
+ simpl in |- *; auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall n0 : nat,
+       eq
+         (Init.Nat.mul (binomial (Init.Nat.add n0 n) n0)
+            (Init.Nat.mul (factorial n0) (factorial n)))
+         (factorial (Init.Nat.add n0 n))) (n0 : nat),
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n0 (S n)) n0)
+     (Init.Nat.mul (factorial n0) (factorial (S n))))
+  (factorial (Init.Nat.add n0 (S n)))&quot;, (&quot;&quot;)))" id="command-23-3" onmouseover="hoverTactic(&quot;23-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros m H' n; elim n; clear n.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.mul (binomial (Init.Nat.add O (S m)) O)
+     (Init.Nat.mul (factorial O) (factorial (S m))))
+  (factorial (Init.Nat.add O (S m)))&quot;, (&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;forall (n : nat)
+  (_ : eq
+         (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+            (Init.Nat.mul (factorial n) (factorial (S m))))
+         (factorial (Init.Nat.add n (S m)))),
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add (S n) (S m)) (S n))
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (factorial (Init.Nat.add (S n) (S m)))&quot;, (&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-4" onmouseover="hoverTactic(&quot;23-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl in |- *; rewrite plus_comm; simpl in |- *; rewrite plus_comm;
+ simpl in |- *; auto.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : eq
+         (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+            (Init.Nat.mul (factorial n) (factorial (S m))))
+         (factorial (Init.Nat.add n (S m)))),
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add (S n) (S m)) (S n))
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (factorial (Init.Nat.add (S n) (S m)))&quot;, (&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-5" onmouseover="hoverTactic(&quot;23-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros n H'0.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.mul (binomial (Init.Nat.add (S n) (S m)) (S n))
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (factorial (Init.Nat.add (S n) (S m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-6" onmouseover="hoverTactic(&quot;23-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">replace (S n + S m) with (S (S n + m)); [ idtac | simpl in |- * ]; auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.mul (binomial (S (Init.Nat.add (S n) m)) (S n))
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-7" onmouseover="hoverTactic(&quot;23-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite binomial_def4;
+ [ idtac | rewrite plus_comm; simpl in |- *; rewrite plus_comm ];
+ auto with arith.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.mul
+     (Init.Nat.add (binomial (Init.Nat.add (S n) m) (S n))
+        (binomial (Init.Nat.add (S n) m) n))
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-8" onmouseover="hoverTactic(&quot;23-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite mult_plus_distr_r.</code><br /></span><span data-subgoals="((&quot;eq
+  (Nat.add
+     (Nat.mul (binomial (Init.Nat.add (S n) m) (S n))
+        (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+     (Nat.mul (binomial (Init.Nat.add (S n) m) n)
+        (Init.Nat.mul (factorial (S n)) (factorial (S m)))))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-9" onmouseover="hoverTactic(&quot;23-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">apply
+ (trans_equal (A:=nat))
+  with (y := factorial (S n + m) * S m + factorial (n + S m) * S n).</code><br /></span><span data-subgoals="((&quot;eq
+  (Nat.add
+     (Nat.mul (binomial (Init.Nat.add (S n) m) (S n))
+        (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+     (Nat.mul (binomial (Init.Nat.add (S n) m) n)
+        (Init.Nat.mul (factorial (S n)) (factorial (S m)))))
+  (Init.Nat.add (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))
+     (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq
+  (Init.Nat.add (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))
+     (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n)))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-10" onmouseover="hoverTactic(&quot;23-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">apply f_equal2 with (A1 := nat) (A2 := nat); auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Nat.mul (binomial (Init.Nat.add (S n) m) (S n))
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq
+  (Nat.mul (binomial (Init.Nat.add (S n) m) n)
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-11" onmouseover="hoverTactic(&quot;23-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite &lt;- H'.</code><br /></span><span data-subgoals="((&quot;eq
+  (Nat.mul (binomial (Init.Nat.add (S n) m) (S n))
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (Init.Nat.mul
+     (Init.Nat.mul (binomial (Init.Nat.add (S n) m) (S n))
+        (Init.Nat.mul (factorial (S n)) (factorial m))) 
+     (S m))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq
+  (Nat.mul (binomial (Init.Nat.add (S n) m) n)
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-12" onmouseover="hoverTactic(&quot;23-12&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">repeat rewrite mult_assoc_reverse; rewrite (mult_comm (factorial m));
+ simpl in |- *; auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Nat.mul (binomial (Init.Nat.add (S n) m) n)
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq
+  (Init.Nat.add (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))
+     (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n)))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-13" onmouseover="hoverTactic(&quot;23-13&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite &lt;- H'0.</code><br /></span><span data-subgoals="((&quot;eq
+  (Nat.mul (binomial (Init.Nat.add (S n) m) n)
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (Init.Nat.mul
+     (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+        (Init.Nat.mul (factorial n) (factorial (S m)))) 
+     (S n))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq
+  (Init.Nat.add (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))
+     (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n)))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-14" onmouseover="hoverTactic(&quot;23-14&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite &lt;- plus_n_Sm; auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Nat.mul (binomial (Init.Nat.add (S n) m) n)
+     (Init.Nat.mul (factorial (S n)) (factorial (S m))))
+  (Init.Nat.mul
+     (Init.Nat.mul (binomial (S (Init.Nat.add n m)) n)
+        (Init.Nat.mul (factorial n) (factorial (S m)))) 
+     (S n))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq
+  (Init.Nat.add (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))
+     (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n)))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-15" onmouseover="hoverTactic(&quot;23-15&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite mult_assoc_reverse; rewrite mult_comm with (m := S n);
+ rewrite (mult_assoc (S n)); simpl in |- *; auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))
+     (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n)))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-16" onmouseover="hoverTactic(&quot;23-16&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">apply (trans_equal (A:=nat)) with (y := (S m + S n) * factorial (S n + m)).</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.add (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))
+     (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n)))
+  (Init.Nat.mul (Init.Nat.add (S m) (S n))
+     (factorial (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq
+  (Init.Nat.mul (Init.Nat.add (S m) (S n))
+     (factorial (Init.Nat.add (S n) m)))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-17" onmouseover="hoverTactic(&quot;23-17&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite mult_plus_distr_r; apply f_equal2 with (A1 := nat) (A2 := nat).</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.mul (factorial (Init.Nat.add (S n) m)) (S m))
+  (Nat.mul (S m) (factorial (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n))
+  (Nat.mul (S n) (factorial (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-18" onmouseover="hoverTactic(&quot;23-18&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (mult_comm (S m)); auto.</code><br /></span><span data-subgoals="((&quot;eq (Init.Nat.mul (factorial (Init.Nat.add n (S m))) (S n))
+  (Nat.mul (S n) (factorial (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)),(&quot;eq
+  (Init.Nat.mul (Init.Nat.add (S m) (S n))
+     (factorial (Init.Nat.add (S n) m)))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-19" onmouseover="hoverTactic(&quot;23-19&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (mult_comm (S n)); rewrite &lt;- plus_n_Sm; auto.</code><br /></span><span data-subgoals="((&quot;eq
+  (Init.Nat.mul (Init.Nat.add (S m) (S n))
+     (factorial (Init.Nat.add (S n) m)))
+  (factorial (S (Init.Nat.add (S n) m)))&quot;, (&quot;H'0 : eq
+  (Init.Nat.mul (binomial (Init.Nat.add n (S m)) n)
+     (Init.Nat.mul (factorial n) (factorial (S m))))
+  (factorial (Init.Nat.add n (S m)))&quot;,&quot;n : nat&quot;,&quot;H' : forall n : nat,
+eq
+  (Init.Nat.mul (binomial (Init.Nat.add n m) n)
+     (Init.Nat.mul (factorial n) (factorial m)))
+  (factorial (Init.Nat.add n m))&quot;,&quot;m : nat&quot;)))" id="command-23-20" onmouseover="hoverTactic(&quot;23-20&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (plus_comm (S m)); rewrite &lt;- plus_n_Sm; auto.</code><br /></span><span data-subgoals="()" id="command-23-21" onmouseover="hoverTactic(&quot;23-21&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div></pre></body></html>

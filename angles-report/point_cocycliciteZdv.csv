@@ -1,0 +1,114 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('point_cocyclicite.v'), PosixPath2('point_napoleon.v'), PosixPath2('point_angle.v'), PosixPath2('point_tangente.v'), PosixPath2('point_orthocentre.v'), PosixPath2('point_Simson.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma calcul4 :
+ forall a b c d : AV,
+ R (plus (plus a b) (plus c d)) (plus (plus a c) (plus b d)).",FAILURE,21
+"Theorem angle_inscrit :
+ forall A B M O : PO,
+ isocele O M A ->
+ isocele O M B ->
+ R (double (cons (vec M A) (vec M B))) (cons (vec O A) (vec O B)).",FAILURE,64
+"Lemma triangle_rectangle :
+ forall A B M O : PO,
+ isocele O M A ->
+ isocele O M B ->
+ orthogonal (vec M A) (vec M B) -> R (cons (vec O A) (vec O B)) pi.",FAILURE,10
+"Lemma triangle_diametre :
+ forall A B M O : PO,
+ isocele O M A ->
+ isocele O M B ->
+ R (cons (vec O A) (vec O B)) pi -> orthogonal (vec M A) (vec M B).",FAILURE,9
+"Theorem cocyclique :
+ forall M A B O M' : PO,
+ isocele O A B ->
+ isocele O M A ->
+ isocele O M B ->
+ isocele O M' A ->
+ isocele O M' B ->
+ R (double (cons (vec M' A) (vec M' B))) (double (cons (vec M A) (vec M B))).",FAILURE,11
+"Lemma exists_opp_angle : forall a : AV, exists b : AV, R (plus a b) zero.",FAILURE,16
+"Lemma construction_orthogonal : forall u : V, exists v : V, orthogonal v u.",FAILURE,19
+"Lemma unicite_circonscrit :
+ forall M A B O O' : PO,
+ isocele O A B ->
+ isocele O M B ->
+ isocele O M A ->
+ isocele O' A B ->
+ isocele O' M B ->
+ isocele O' M A ->
+ (colineaire (vec O A) (vec O' A) /\ colineaire (vec O B) (vec O' B)) /\
+ colineaire (vec O M) (vec O' M).",FAILURE,201
+"Lemma construction_isocele_base :
+ forall (A B : PO) (a : AV),
+ exists u : V,
+   (exists v : V,
+      R (cons (vec A B) u) (cons v (vec B A)) /\ R (cons u v) (double a)).",FAILURE,137
+"Lemma abba : forall A B : PO, R (cons (vec A B) (vec B A)) pi.",FAILURE,11
+"Lemma calcul5 :
+ forall a b c d : AV,
+ R (plus (plus a (plus b c)) (plus d d))
+   (plus a (plus (plus d b) (plus d c))).",FAILURE,16
+"Lemma construction_circonscrit_vecteur :
+ forall M A B : PO,
+ ex
+   (fun u : V =>
+    ex
+      (fun v : V =>
+       ex
+         (fun w : V =>
+          (R (cons u v) (double (cons (vec M A) (vec M B))) /\
+           R (cons u w) (double (cons (vec B A) (vec B M))) /\
+           R (cons v w) (double (cons (vec A B) (vec A M)))) /\
+          R (cons (vec A B) u) (cons v (vec B A)) /\
+          R (cons w (vec M B)) (cons (vec B M) v) /\
+          R (cons (vec M A) w) (cons u (vec A M))))).",INCOMPLETE,324
+"Lemma isocele_sym : forall A B C : PO, isocele A B C -> isocele A C B.",SUCCESS,38
+"Theorem reciproque_cocyclique :
+ forall M A B M' : PO,
+ ~ colineaire (vec M A) (vec M B) ->
+ R (double (cons (vec M' A) (vec M' B))) (double (cons (vec M A) (vec M B))) ->
+ sont_cocycliques M A B M'.",INCOMPLETE,167
+"Lemma changement_base_cocyclique :
+ forall A B C D : PO,
+ ~ colineaire (vec C A) (vec C B) ->
+ R (double (cons (vec C A) (vec C B))) (double (cons (vec D A) (vec D B))) ->
+ R (double (cons (vec A C) (vec A D))) (double (cons (vec B C) (vec B D))).",FAILURE,35
+"Lemma changement_base_cocyclique_2 :
+ forall A B C D : PO,
+ ~ colineaire (vec C A) (vec C B) ->
+ R (double (cons (vec C A) (vec C B))) (double (cons (vec D A) (vec D B))) ->
+ R (double (cons (vec B C) (vec B A))) (double (cons (vec D C) (vec D A))).",FAILURE,35

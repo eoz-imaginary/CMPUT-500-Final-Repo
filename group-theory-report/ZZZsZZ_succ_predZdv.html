@@ -1,0 +1,233 @@
+<html><head><link href="details.css" rel="stylesheet" /><script type="text/javascript" src="search-details.js"></script><title>Proverbot Detailed Report for Z/Z_succ_pred.v</title></head><body onload="init()"><pre><code class="plaincommand">(* Contribution to the Coq Library   V6.3 (July 1999)                    *)
+
+Require Import Arith.</code><br /><code class="plaincommand">Require Import Zbase.</code><br /><code class="plaincommand">Definition succZ (x : Z) :=
+  match x return Z with
+  | OZ =&gt; IZ
+  | pos n =&gt; pos (S n)
+  | neg n =&gt; match n return Z with
+             | O =&gt; OZ
+             | S m =&gt; neg m
+             end
+  end.</code><br /><code class="plaincommand">Definition predZ (x : Z) :=
+  match x return Z with
+  | OZ =&gt; neg 0
+  | pos n =&gt; match n return Z with
+             | O =&gt; OZ
+             | S m =&gt; pos m
+             end
+  | neg n =&gt; neg (S n)
+  end.</code><br /><button class="collapsible good" onmouseover="hoverLemma(&quot;ZZ_succ_predZdpred_succZ&quot;)" onmouseout="unhoverLemma(&quot;ZZ_succ_predZdpred_succZ&quot;)"><code class="buttontext">Lemma pred_succZ : forall x : Z, predZ (succZ x) = x.</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall x : Z, eq (predZ (succZ x)) x&quot;, (&quot;&quot;)))" id="command-1-0" onmouseover="hoverTactic(&quot;1-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall x : Z, eq (predZ (succZ x)) x&quot;, (&quot;&quot;)))" id="command-1-1" onmouseover="hoverTactic(&quot;1-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (predZ (succZ x)) x&quot;, (&quot;x : Z&quot;)))" id="command-1-2" onmouseover="hoverTactic(&quot;1-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">unfold predZ.</code><br /></span><span data-subgoals="((&quot;eq
+  match succZ x with
+  | OZ => neg O
+  | pos O => OZ
+  | pos (S m) => pos m
+  | neg n => neg (S n)
+  end x&quot;, (&quot;x : Z&quot;)))" id="command-1-3" onmouseover="hoverTactic(&quot;1-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">destruct x.</code><br /></span><span data-subgoals="((&quot;eq
+  match succZ OZ with
+  | OZ => neg O
+  | pos O => OZ
+  | pos (S m) => pos m
+  | neg n => neg (S n)
+  end OZ&quot;, (&quot;&quot;)),(&quot;eq
+  match succZ (pos n) with
+  | OZ => neg O
+  | pos O => OZ
+  | pos (S m) => pos m
+  | neg n => neg (S n)
+  end (pos n)&quot;, (&quot;n : nat&quot;)))" id="command-1-4" onmouseover="hoverTactic(&quot;1-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="((&quot;eq
+  match succZ (pos n) with
+  | OZ => neg O
+  | pos O => OZ
+  | pos (S m) => pos m
+  | neg n => neg (S n)
+  end (pos n)&quot;, (&quot;n : nat&quot;)),(&quot;eq
+  match succZ (neg n) with
+  | OZ => neg O
+  | pos O => OZ
+  | pos (S m) => pos m
+  | neg n => neg (S n)
+  end (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-1-5" onmouseover="hoverTactic(&quot;1-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">reflexivity.</code><br /></span><span data-subgoals="((&quot;eq
+  match succZ (neg n) with
+  | OZ => neg O
+  | pos O => OZ
+  | pos (S m) => pos m
+  | neg n => neg (S n)
+  end (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-1-6" onmouseover="hoverTactic(&quot;1-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl.</code><br /></span><span data-subgoals="((&quot;eq
+  match match n with
+        | O => OZ
+        | S m => neg m
+        end with
+  | OZ => neg O
+  | pos O => OZ
+  | pos (S m) => pos m
+  | neg n => neg (S n)
+  end (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-1-7" onmouseover="hoverTactic(&quot;1-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">destruct n.</code><br /></span><span data-subgoals="((&quot;eq (neg O) (neg O)&quot;, (&quot;&quot;)),(&quot;eq (neg (S n)) (neg (S n))&quot;, (&quot;n : nat&quot;)))" id="command-1-8" onmouseover="hoverTactic(&quot;1-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="((&quot;eq (neg (S n)) (neg (S n))&quot;, (&quot;n : nat&quot;)))" id="command-1-9" onmouseover="hoverTactic(&quot;1-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="()" id="command-1-10" onmouseover="hoverTactic(&quot;1-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall x : Z, eq (predZ (succZ x)) x&quot;, (&quot;&quot;)))" id="command-1-0" onmouseover="hoverTactic(&quot;1-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intro x.</code><br /></span><span data-subgoals="((&quot;eq (predZ (succZ x)) x&quot;, (&quot;x : Z&quot;)))" id="command-1-1" onmouseover="hoverTactic(&quot;1-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim x.</code><br /></span><span data-subgoals="((&quot;eq (predZ (succZ OZ)) OZ&quot;, (&quot;x : Z&quot;)),(&quot;forall n : nat, eq (predZ (succZ (pos n))) (pos n)&quot;, (&quot;x : Z&quot;)))" id="command-1-2" onmouseover="hoverTactic(&quot;1-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (predZ (succZ (pos n))) (pos n)&quot;, (&quot;x : Z&quot;)),(&quot;forall n : nat, eq (predZ (succZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-1-3" onmouseover="hoverTactic(&quot;1-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (predZ (succZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-1-4" onmouseover="hoverTactic(&quot;1-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (predZ (succZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-1-5" onmouseover="hoverTactic(&quot;1-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intro n.</code><br /></span><span data-subgoals="((&quot;eq (predZ (succZ (neg n))) (neg n)&quot;, (&quot;n : nat&quot;,&quot;x : Z&quot;)))" id="command-1-6" onmouseover="hoverTactic(&quot;1-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim n.</code><br /></span><span data-subgoals="((&quot;eq (predZ (succZ (neg O))) (neg O)&quot;, (&quot;n : nat&quot;,&quot;x : Z&quot;)),(&quot;forall (n : nat) (_ : eq (predZ (succZ (neg n))) (neg n)),
+eq (predZ (succZ (neg (S n)))) (neg (S n))&quot;, (&quot;n : nat&quot;,&quot;x : Z&quot;)))" id="command-1-7" onmouseover="hoverTactic(&quot;1-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : eq (predZ (succZ (neg n))) (neg n)),
+eq (predZ (succZ (neg (S n)))) (neg (S n))&quot;, (&quot;n : nat&quot;,&quot;x : Z&quot;)))" id="command-1-8" onmouseover="hoverTactic(&quot;1-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="()" id="command-1-9" onmouseover="hoverTactic(&quot;1-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible good" onmouseover="hoverLemma(&quot;ZZ_succ_predZdsucc_predZ&quot;)" onmouseout="unhoverLemma(&quot;ZZ_succ_predZdsucc_predZ&quot;)"><code class="buttontext">Lemma succ_predZ : forall x : Z, succZ (predZ x) = x.</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall x : Z, eq (succZ (predZ x)) x&quot;, (&quot;&quot;)))" id="command-3-0" onmouseover="hoverTactic(&quot;3-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall x : Z, eq (succZ (predZ x)) x&quot;, (&quot;&quot;)))" id="command-3-1" onmouseover="hoverTactic(&quot;3-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ x)) x&quot;, (&quot;x : Z&quot;)))" id="command-3-2" onmouseover="hoverTactic(&quot;3-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">unfold succZ.</code><br /></span><span data-subgoals="((&quot;eq
+  match predZ x with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end x&quot;, (&quot;x : Z&quot;)))" id="command-3-3" onmouseover="hoverTactic(&quot;3-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">destruct x.</code><br /></span><span data-subgoals="((&quot;eq
+  match predZ OZ with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end OZ&quot;, (&quot;&quot;)),(&quot;eq
+  match predZ (pos n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (pos n)&quot;, (&quot;n : nat&quot;)))" id="command-3-4" onmouseover="hoverTactic(&quot;3-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">reflexivity.</code><br /></span><span data-subgoals="((&quot;eq
+  match predZ (pos n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (pos n)&quot;, (&quot;n : nat&quot;)),(&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-3-5" onmouseover="hoverTactic(&quot;3-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl.</code><br /></span><span data-subgoals="((&quot;eq
+  match match n with
+        | O => OZ
+        | S m => pos m
+        end with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (pos n)&quot;, (&quot;n : nat&quot;)),(&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-3-6" onmouseover="hoverTactic(&quot;3-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">destruct n.</code><br /></span><span data-subgoals="((&quot;eq IZ (pos O)&quot;, (&quot;&quot;)),(&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-3-7" onmouseover="hoverTactic(&quot;3-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="((&quot;eq (pos (S n)) (pos (S n))&quot;, (&quot;n : nat&quot;)),(&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-3-8" onmouseover="hoverTactic(&quot;3-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="((&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-3-9" onmouseover="hoverTactic(&quot;3-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl.</code><br /></span><span data-subgoals="((&quot;eq (neg n) (neg n)&quot;, (&quot;n : nat&quot;)))" id="command-3-10" onmouseover="hoverTactic(&quot;3-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="()" id="command-3-11" onmouseover="hoverTactic(&quot;3-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall x : Z, eq (succZ (predZ x)) x&quot;, (&quot;&quot;)))" id="command-3-0" onmouseover="hoverTactic(&quot;3-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intro x.</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ x)) x&quot;, (&quot;x : Z&quot;)))" id="command-3-1" onmouseover="hoverTactic(&quot;3-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim x.</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ OZ)) OZ&quot;, (&quot;x : Z&quot;)),(&quot;forall n : nat, eq (succZ (predZ (pos n))) (pos n)&quot;, (&quot;x : Z&quot;)))" id="command-3-2" onmouseover="hoverTactic(&quot;3-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (succZ (predZ (pos n))) (pos n)&quot;, (&quot;x : Z&quot;)),(&quot;forall n : nat, eq (succZ (predZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-3-3" onmouseover="hoverTactic(&quot;3-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (succZ (predZ (pos n))) (pos n)&quot;, (&quot;x : Z&quot;)),(&quot;forall n : nat, eq (succZ (predZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-3-4" onmouseover="hoverTactic(&quot;3-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intro n.</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ (pos n))) (pos n)&quot;, (&quot;n : nat&quot;,&quot;x : Z&quot;)),(&quot;forall n : nat, eq (succZ (predZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-3-5" onmouseover="hoverTactic(&quot;3-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim n.</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ (pos O))) (pos O)&quot;, (&quot;n : nat&quot;,&quot;x : Z&quot;)),(&quot;forall n : nat, eq (succZ (predZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-3-6" onmouseover="hoverTactic(&quot;3-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : eq (succZ (predZ (pos n))) (pos n)),
+eq (succZ (predZ (pos (S n)))) (pos (S n))&quot;, (&quot;n : nat&quot;,&quot;x : Z&quot;)),(&quot;forall n : nat, eq (succZ (predZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-3-7" onmouseover="hoverTactic(&quot;3-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall n : nat, eq (succZ (predZ (neg n))) (neg n)&quot;, (&quot;x : Z&quot;)))" id="command-3-8" onmouseover="hoverTactic(&quot;3-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="()" id="command-3-9" onmouseover="hoverTactic(&quot;3-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible good" onmouseover="hoverLemma(&quot;ZZ_succ_predZdsucc_pred_pred_succZ&quot;)" onmouseout="unhoverLemma(&quot;ZZ_succ_predZdsucc_pred_pred_succZ&quot;)"><code class="buttontext">Lemma succ_pred_pred_succZ : forall x : Z, succZ (predZ x) = predZ (succZ x).</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall x : Z, eq (succZ (predZ x)) (predZ (succZ x))&quot;, (&quot;&quot;)))" id="command-5-0" onmouseover="hoverTactic(&quot;5-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall x : Z, eq (succZ (predZ x)) (predZ (succZ x))&quot;, (&quot;&quot;)))" id="command-5-1" onmouseover="hoverTactic(&quot;5-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ x)) (predZ (succZ x))&quot;, (&quot;x : Z&quot;)))" id="command-5-2" onmouseover="hoverTactic(&quot;5-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">unfold succZ.</code><br /></span><span data-subgoals="((&quot;eq
+  match predZ x with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end
+  (predZ
+     match x with
+     | OZ => IZ
+     | pos n => pos (S n)
+     | neg O => OZ
+     | neg (S m) => neg m
+     end)&quot;, (&quot;x : Z&quot;)))" id="command-5-3" onmouseover="hoverTactic(&quot;5-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">destruct x.</code><br /></span><span data-subgoals="((&quot;eq
+  match predZ OZ with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (predZ IZ)&quot;, (&quot;&quot;)),(&quot;eq
+  match predZ (pos n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (predZ (pos (S n)))&quot;, (&quot;n : nat&quot;)))" id="command-5-4" onmouseover="hoverTactic(&quot;5-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">reflexivity.</code><br /></span><span data-subgoals="((&quot;eq
+  match predZ (pos n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (predZ (pos (S n)))&quot;, (&quot;n : nat&quot;)),(&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (predZ match n with
+             | O => OZ
+             | S m => neg m
+             end)&quot;, (&quot;n : nat&quot;)))" id="command-5-5" onmouseover="hoverTactic(&quot;5-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl.</code><br /></span><span data-subgoals="((&quot;eq
+  match match n with
+        | O => OZ
+        | S m => pos m
+        end with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (pos n)&quot;, (&quot;n : nat&quot;)),(&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (predZ match n with
+             | O => OZ
+             | S m => neg m
+             end)&quot;, (&quot;n : nat&quot;)))" id="command-5-6" onmouseover="hoverTactic(&quot;5-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">destruct n.</code><br /></span><span data-subgoals="((&quot;eq IZ (pos O)&quot;, (&quot;&quot;)),(&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (predZ match n with
+             | O => OZ
+             | S m => neg m
+             end)&quot;, (&quot;n : nat&quot;)))" id="command-5-7" onmouseover="hoverTactic(&quot;5-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="((&quot;eq (pos (S n)) (pos (S n))&quot;, (&quot;n : nat&quot;)),(&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (predZ match n with
+             | O => OZ
+             | S m => neg m
+             end)&quot;, (&quot;n : nat&quot;)))" id="command-5-8" onmouseover="hoverTactic(&quot;5-8&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="((&quot;eq
+  match predZ (neg n) with
+  | OZ => IZ
+  | pos n => pos (S n)
+  | neg O => OZ
+  | neg (S m) => neg m
+  end (predZ match n with
+             | O => OZ
+             | S m => neg m
+             end)&quot;, (&quot;n : nat&quot;)))" id="command-5-9" onmouseover="hoverTactic(&quot;5-9&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl.</code><br /></span><span data-subgoals="((&quot;eq (neg n) (predZ match n with
+                  | O => OZ
+                  | S m => neg m
+                  end)&quot;, (&quot;n : nat&quot;)))" id="command-5-10" onmouseover="hoverTactic(&quot;5-10&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">destruct n.</code><br /></span><span data-subgoals="((&quot;eq (neg O) (predZ OZ)&quot;, (&quot;&quot;)),(&quot;eq (neg (S n)) (predZ (neg n))&quot;, (&quot;n : nat&quot;)))" id="command-5-11" onmouseover="hoverTactic(&quot;5-11&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="((&quot;eq (neg (S n)) (predZ (neg n))&quot;, (&quot;n : nat&quot;)))" id="command-5-12" onmouseover="hoverTactic(&quot;5-12&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="()" id="command-5-13" onmouseover="hoverTactic(&quot;5-13&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall x : Z, eq (succZ (predZ x)) (predZ (succZ x))&quot;, (&quot;&quot;)))" id="command-5-0" onmouseover="hoverTactic(&quot;5-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intro x.</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ x)) (predZ (succZ x))&quot;, (&quot;x : Z&quot;)))" id="command-5-1" onmouseover="hoverTactic(&quot;5-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">try assumption.</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ x)) (predZ (succZ x))&quot;, (&quot;x : Z&quot;)))" id="command-5-2" onmouseover="hoverTactic(&quot;5-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (pred_succZ x).</code><br /></span><span data-subgoals="((&quot;eq (succZ (predZ x)) x&quot;, (&quot;x : Z&quot;)))" id="command-5-3" onmouseover="hoverTactic(&quot;5-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">rewrite (succ_predZ x).</code><br /></span><span data-subgoals="((&quot;eq x x&quot;, (&quot;x : Z&quot;)))" id="command-5-4" onmouseover="hoverTactic(&quot;5-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">trivial with arith.</code><br /></span><span data-subgoals="()" id="command-5-5" onmouseover="hoverTactic(&quot;5-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div><button class="collapsible good" onmouseover="hoverLemma(&quot;ZZ_succ_predZdtech_pred_posZ&quot;)" onmouseout="unhoverLemma(&quot;ZZ_succ_predZdtech_pred_posZ&quot;)"><code class="buttontext">Lemma tech_pred_posZ : forall n : nat, 0 &lt; n -&gt; predZ (pos n) = pos (pred n).</code></button><div class="region"><div class="predicted"><span data-subgoals="((&quot;forall (n : nat) (_ : lt O n),
+eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;, (&quot;&quot;)))" id="command-7-0" onmouseover="hoverTactic(&quot;7-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Proof.</code><br /></span><span data-subgoals="((&quot;forall (n : nat) (_ : lt O n),
+eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;, (&quot;&quot;)))" id="command-7-1" onmouseover="hoverTactic(&quot;7-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">induction n.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O O, eq (predZ (pos O)) (pos (Init.Nat.pred O))&quot;, (&quot;&quot;)),(&quot;forall _ : lt O (S n),
+eq (predZ (pos (S n))) (pos (Init.Nat.pred (S n)))&quot;, (&quot;IHn : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;,&quot;n : nat&quot;)))" id="command-7-2" onmouseover="hoverTactic(&quot;7-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">easy.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O (S n),
+eq (predZ (pos (S n))) (pos (Init.Nat.pred (S n)))&quot;, (&quot;IHn : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;,&quot;n : nat&quot;)))" id="command-7-3" onmouseover="hoverTactic(&quot;7-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intros.</code><br /></span><span data-subgoals="((&quot;eq (predZ (pos (S n))) (pos (Init.Nat.pred (S n)))&quot;, (&quot;H : lt O (S n)&quot;,&quot;IHn : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;,&quot;n : nat&quot;)))" id="command-7-4" onmouseover="hoverTactic(&quot;7-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">unfold predZ.</code><br /></span><span data-subgoals="((&quot;eq (pos n) (pos (Init.Nat.pred (S n)))&quot;, (&quot;H : lt O (S n)&quot;,&quot;IHn : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;,&quot;n : nat&quot;)))" id="command-7-5" onmouseover="hoverTactic(&quot;7-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">simpl.</code><br /></span><span data-subgoals="((&quot;eq (pos n) (pos n)&quot;, (&quot;H : lt O (S n)&quot;,&quot;IHn : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;,&quot;n : nat&quot;)))" id="command-7-6" onmouseover="hoverTactic(&quot;7-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">eauto.</code><br /></span><span data-subgoals="()" id="command-7-7" onmouseover="hoverTactic(&quot;7-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div><div class="original"><span data-subgoals="((&quot;forall (n : nat) (_ : lt O n),
+eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;, (&quot;&quot;)))" id="command-7-0" onmouseover="hoverTactic(&quot;7-0&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intro n.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n))&quot;, (&quot;n : nat&quot;)))" id="command-7-1" onmouseover="hoverTactic(&quot;7-1&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim n.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O O, eq (predZ (pos O)) (pos (Init.Nat.pred O))&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n)))
+  (_ : lt O (S n)), eq (predZ (pos (S n))) (pos (Init.Nat.pred (S n)))&quot;, (&quot;n : nat&quot;)))" id="command-7-2" onmouseover="hoverTactic(&quot;7-2&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall _ : lt O O, eq (predZ (pos O)) (pos (Init.Nat.pred O))&quot;, (&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n)))
+  (_ : lt O (S n)), eq (predZ (pos (S n))) (pos (Init.Nat.pred (S n)))&quot;, (&quot;n : nat&quot;)))" id="command-7-3" onmouseover="hoverTactic(&quot;7-3&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">intro H'.</code><br /></span><span data-subgoals="((&quot;eq (predZ (pos O)) (pos (Init.Nat.pred O))&quot;, (&quot;H' : lt O O&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n)))
+  (_ : lt O (S n)), eq (predZ (pos (S n))) (pos (Init.Nat.pred (S n)))&quot;, (&quot;n : nat&quot;)))" id="command-7-4" onmouseover="hoverTactic(&quot;7-4&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">elim (lt_n_O 0).</code><br /></span><span data-subgoals="((&quot;lt O O&quot;, (&quot;H' : lt O O&quot;,&quot;n : nat&quot;)),(&quot;forall (n : nat)
+  (_ : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n)))
+  (_ : lt O (S n)), eq (predZ (pos (S n))) (pos (Init.Nat.pred (S n)))&quot;, (&quot;n : nat&quot;)))" id="command-7-5" onmouseover="hoverTactic(&quot;7-5&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="((&quot;forall (n : nat)
+  (_ : forall _ : lt O n, eq (predZ (pos n)) (pos (Init.Nat.pred n)))
+  (_ : lt O (S n)), eq (predZ (pos (S n))) (pos (Init.Nat.pred (S n)))&quot;, (&quot;n : nat&quot;)))" id="command-7-6" onmouseover="hoverTactic(&quot;7-6&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">auto with arith.</code><br /></span><span data-subgoals="()" id="command-7-7" onmouseover="hoverTactic(&quot;7-7&quot;)" onmouseout="unhoverTactic()"><code class="plaincommand">Qed.</code><br /></span></div></div></pre></body></html>

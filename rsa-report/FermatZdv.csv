@@ -1,0 +1,46 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('Fermat.v'), PosixPath2('Binomials.v'), PosixPath2('Rsa.v'), PosixPath2('MiscRsa.v'), PosixPath2('Divides.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma div_fact :
+ forall p k : nat,
+ prime p ->
+ 0 < k ->
+ divides p (factorial k) -> exists j : nat, 0 < j /\ j <= k /\ divides p j.",INCOMPLETE,50
+"Lemma p_div_bin :
+ forall k p : nat, prime p -> 0 < k -> k < p -> divides p (binomial p k).",INCOMPLETE,87
+"Lemma Fermat1 :
+ forall x p : nat, prime p -> congruent p (power (x + 1) p) (power x p + 1).",INCOMPLETE,64
+"Lemma Fermat2 : forall x p : nat, prime p -> congruent p (power x p) x.",INCOMPLETE,36

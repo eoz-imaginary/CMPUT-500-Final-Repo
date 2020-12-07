@@ -1,0 +1,68 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Lemma addZ_eq1 : forall y : Z, addZ OZ y = y.",SUCCESS,3
+"Lemma addZ_eq2 : forall y : Z, addZ (pos 0) y = succZ y.",SUCCESS,3
+"Lemma addZ_eq3 :
+ forall (n1 : nat) (y : Z), addZ (pos (S n1)) y = succZ (addZ (pos n1) y).",SUCCESS,3
+"Lemma addZ_eq4 : forall y : Z, addZ (neg 0) y = predZ y.",SUCCESS,3
+"Lemma addZ_eq5 :
+ forall (n1 : nat) (y : Z), addZ (neg (S n1)) y = predZ (addZ (neg n1) y).",SUCCESS,3
+"Lemma succ_addZ_l : forall x y : Z, addZ (succZ x) y = succZ (addZ x y).",INCOMPLETE,18
+"Lemma pred_addZ_l : forall x y : Z, addZ (predZ x) y = predZ (addZ x y).",INCOMPLETE,13
+"Lemma tech_add_pos_succZ :
+ forall (x : nat) (y : Z), addZ (pos (S x)) y = succZ (addZ (pos x) y).",SUCCESS,1
+"Lemma tech_add_neg_predZ :
+ forall (x : nat) (y : Z), addZ (neg (S x)) y = predZ (addZ (neg x) y).",SUCCESS,1
+"Lemma succ_addZ_r : forall x y : Z, addZ x (succZ y) = succZ (addZ x y).",INCOMPLETE,19
+"Lemma pred_addZ_r : forall x y : Z, addZ x (predZ y) = predZ (addZ x y).",INCOMPLETE,17
+"Lemma add_OZ : forall x : Z, addZ x OZ = x.",INCOMPLETE,15
+"Lemma add_IZ_succZ : forall x : Z, addZ x IZ = succZ x.",INCOMPLETE,10
+"Lemma add_mIZ_predZ : forall x : Z, addZ x (neg 0) = predZ x.",INCOMPLETE,10
+Theorem addZ_commutativity : commutative Z addZ.,INCOMPLETE,35
+"Lemma tech_add_pos_neg_posZ :
+ forall n1 n2 : nat, n2 < n1 -> addZ (pos n1) (neg n2) = pos (n1 - S n2).",INCOMPLETE,22
+Theorem addZ_associativity : associative Z addZ.,INCOMPLETE,25
+Theorem addZ_neutral : neutral Z IdZ addZ OZ.,SUCCESS,10
+"Lemma opp_succZ : forall x : Z, oppZ (succZ x) = predZ (oppZ x).",SUCCESS,10
+"Lemma opp_predZ : forall x : Z, oppZ (predZ x) = succZ (oppZ x).",SUCCESS,10
+"Lemma tech_add_pos_negZ : forall n : nat, addZ (pos n) (neg n) = OZ.",INCOMPLETE,7
+"Lemma tech_add_neg_posZ : forall n : nat, addZ (neg n) (pos n) = OZ.",FAILURE,4
+"Lemma tech_add_pos_posZ :
+ forall n m : nat, addZ (pos n) (pos m) = pos (S (n + m)).",INCOMPLETE,8
+"Lemma tech_add_neg_negZ :
+ forall n m : nat, addZ (neg n) (neg m) = neg (S (n + m)).",INCOMPLETE,7
+"Theorem abs_eq_or_oppZ : forall x : Z, {absZ x = x} + {absZ x = oppZ x}.",SUCCESS,5

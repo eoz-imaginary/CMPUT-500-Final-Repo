@@ -1,0 +1,44 @@
+# prelude: .
+# output_dir: search-report-compcert
+# verbose: 0
+# progress: True
+# read_progress: False
+# hardfail: False
+# context_filter: None
+# weightsfile: /home/zoe/Desktop/proverbot9001/bench/../data/polyarg-weights-compcert.dat
+# predictor: None
+# truncate_semicolons: True
+# search_width: 5
+# max_attempts: 10
+# search_depth: 6
+# hard_depth_limit: 200
+# resume: True
+# overwrite_mismatch: False
+# max_print_term: None
+# max_print_hyps: None
+# max_print_subgoals: 2
+# max_proof_time: 300
+# max_tactic_time: 2
+# linearize: False
+# proof_times: None
+# filenames: [PosixPath2('g1.v'), PosixPath2('Group_definitions.v'), PosixPath2('gr.v'), PosixPath2('Relations.v'), PosixPath2('Z/Zbase.v'), PosixPath2('Z/Nat_complements.v'), PosixPath2('Z/Zle.v'), PosixPath2('Z/Z_succ_pred.v'), PosixPath2('Z/Zadd.v'), PosixPath2('g3.v'), PosixPath2('g2.v'), PosixPath2('Laws.v')]
+# use_hammer: False
+# check_consistent: True
+# show_failing_predictions: False
+# count_failing_predictions: False
+# count_softfail_predictions: False
+# careful: False
+# relevant_lemmas: local
+# command_limit: None
+# proof: None
+# log_anomalies: None
+# log_hard_anomalies: None
+# num_threads: 4
+"Theorem auxsub :
+ forall (H : Group U) (x : U), subgroup U H Gr -> In U (G_ U H) x -> In U G x.",SUCCESS,5
+Theorem T4 : Same_set U (Prod H K) (Prod K H) -> Setsubgroup U (Prod H K) Gr.,INCOMPLETE,78
+Theorem T4R : Setsubgroup U (Prod H K) Gr -> Included U (Prod H K) (Prod K H).,INCOMPLETE,55
+"Theorem T4R1 :
+ Setsubgroup U (Prod H K) Gr -> Included U (Prod K H) (Prod H K).",INCOMPLETE,74
+"Theorem T_1_6_8 :
+ Same_set U (Prod H K) (Prod K H) <-> Setsubgroup U (Prod H K) Gr.",SUCCESS,4
